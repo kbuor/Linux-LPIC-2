@@ -1,0 +1,12 @@
+#!/bin/bash
+clear
+read -p 'Nhap vao o cung muon kiem tra: ' disk
+echo -e "\n========== THONG TIN DIA CUNG $disk ==========\n"
+echo -e "Kiem tra ngay $(date +%d" thang "%m" nam "%Y)\n"
+disk_info=$(fdisk -l $disk | sed -n '2p' | cut -d ' ' -f 3-)
+echo -e "O cung $disk co dung luong: ${disk_info}\n"
+disk_part=$(fdisk -l $disk | grep $disk | tail -n +2 | cut -d ' ' -f 1)
+echo 'Cac phan vung:'
+echo -e "${disk_part}\n"
+blkid -s TYPE | grep $disk | awk -F ' ' '{print "Phan vung " $1,"co kieu du lieu la " $2}'
+echo ''
