@@ -31,3 +31,8 @@ systemctl enable vsftpd
 
 # Manage user login ftp
 vi /etc/vsftpd/user_list
+
+# Optional config:
+force_dot_files=YES # Hiển thị file ẩn
+deny_file={*.mp3,*.exe} # Chặn file theo định dạng
+cmds_denied=DELE,RMD # Cho phép upload nhưng cấp xóa
