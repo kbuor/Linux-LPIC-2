@@ -31,8 +31,3 @@ systemctl enable vsftpd
 
 # Manage user login ftp
 vi /etc/vsftpd/user_list
-
-# Change default public directory
-# Default public directory: /var/ftp/pub
-# Add to /etc/vsftpd/vsftpd.conf
-anon_root=/path/to/dir
