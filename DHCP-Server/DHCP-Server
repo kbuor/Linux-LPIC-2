@@ -8,9 +8,10 @@ reboot
 
 # Install DHCP Server package
 yum install -y dhcp
+
+# Configure DHCP Server
 cp /usr/share/doc/dhcp*/dhcpd.conf.example /etc/dhcp/dhcpd.conf
 vi /etc/dhcp/dhcpd.conf
-
 # Edit line 7: option domain-name "kbuor.local";
 # Edit line 8: option domain-name-servers 8.8.8.8, 1.1.1.1;
 # Edit line 10: default-lease-time 600; # Thời gian mặc định cấp IP cho một client
@@ -26,5 +27,19 @@ vi /etc/dhcp/dhcpd.conf
 # Edit line 53: default-lease-time 600; # Thời gian mặc định cấp IP cho một client
 # Edit line 54: max-lease-time 7200; # Thời gian tối đa cấp IP cho một client, nếu client có yêu cầu về thời gian
 
+# Start DHCP Service
 systemctl start dhcpd
 systemctl enable dhcpd
+
+# Monitor DHCP leasing
+cat /var/lib/dhcpd/dhcpd.leases
+
+# Monitor DHCP log
+cat /var/log/boot.log | grep dhcp
+
+# Assign IP to specify client
+vi /etc/dhcp/dhcpd.conf
+# Edit line 75: host lasuno {
+# Edit line 76: hardware ethernet 08:00:07:26:c0:a5;
+# Edit line 77: fixed-address 10.19.0.236;
+systemctl restart dhcpd
