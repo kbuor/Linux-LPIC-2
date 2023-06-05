@@ -5,3 +5,26 @@ systemctl stop firewalld
 systemctl disable firewalld
 sed -i "s/=enforcing/=disabled/g" /etc/sysconfig/selinux
 reboot
+
+# Install DHCP Server package
+yum install -y dhcp
+cp /usr/share/doc/dhcp*/dhcpd.conf.example /etc/dhcp/dhcpd.conf
+vi /etc/dhcp/dhcpd.conf
+
+# Edit line 7: option domain-name "kbuor.local";
+# Edit line 8: option domain-name-servers 8.8.8.8, 1.1.1.1;
+# Edit line 10: default-lease-time 600;
+# Edit line 11: max-lease-time 7200;
+# Edit line 22: log-facility local7;
+
+# Edit line 47: subnet 10.19.0.0 netmask 255.255.255.0 {
+# Edit line 48: range 10.19.0.230 10.19.0.239;
+# Edit line 49: option domain-name-servers 8.8.8.8;
+# Edit line 50: option domain-name "kbuor.local";
+# Edit line 51: option routers 10.19.0.254;
+# Edit line 52: option broadcast-address 10.19.0.255;
+# Edit line 53: default-lease-time 600;
+# Edit line 54: max-lease-time 7200;
+
+systemctl start dhcpd
+systemctl enable dhcpd
