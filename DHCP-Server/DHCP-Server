@@ -1,1 +1,7 @@
-
+# Prepare Linux (Centos 7)
+yum install -y open-vm-tools git wget unzip epel-release
+yum update -y
+systemctl stop firewalld
+systemctl disable firewalld
+sed -i "s/=enforcing/=disabled/g" /etc/sysconfig/selinux
+reboot
