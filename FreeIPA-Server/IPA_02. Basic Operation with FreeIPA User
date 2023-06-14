@@ -1,0 +1,29 @@
+# Add a FreeIPA user account
+ipa user-add robusta --first=Robusta --last=HCM --password
+
+# Lock or unlock a FreeIPA user
+ipa user-disable robusta
+ipa user-enable robusta
+
+#Serch a FreeIPA user
+ipa user-find robusta
+(or)
+ipa user-show --raw robusta
+
+#Delete a FreeIPA user
+ipa user-del robusta
+
+#Add a FreeIPA group
+ipa group-add --desc='Robusta Group' robusgroup
+
+#Add members in a FreeIPA group
+ipa group-add-member --users=robusta,kbuor robusgroup
+
+#Add a group in a FreeIPA group
+ipa group-add-member --groups=robustahcm robusgroup
+
+#Search a FreeIPA group
+ipa group-find robusgroup
+
+#Delete a FreeIPA group
+ipa group-del robusgroup
