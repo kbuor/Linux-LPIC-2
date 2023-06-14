@@ -1,0 +1,153 @@
++------------------+
+|     CentOS 7     |
+|  ipa.kbuor.local |
+|    10.0.14.101   |
++------------------+
+
+# Deploy FreeIPA Server
+yum install -y open-vm-tool epel-release wget unzip zip bind-utils net-tools
+yum update -y
+systemctl disable --now firewalld
+systemctl stop firewalld
+vi /etc/sysconfig/selinux
+    # Set enforcing to disabled
+reboot
+
+clear
+hostname ipa.kbuor.local
+    # Set correct hostname (Ex: ipa.kbuor.local)
+vi /etc/hosts
+    # Add to end of file
+    10.0.14.101 ipa.kbuor.local ipa (your-ip your-host-fullname your-host-sortname)
+yum install -y ipa-server ipa-server-dns
+ipa-server-install --setup-dns
+
+                      The log file for this installation can be found in /var/log/ipaserver-install.log
+                      ==============================================================================
+                      This program will set up the IPA Server.
+
+                      This includes:
+                        * Configure a stand-alone CA (dogtag) for certificate management
+                        * Configure the Network Time Daemon (ntpd)
+                        * Create and configure an instance of Directory Server
+                        * Create and configure a Kerberos Key Distribution Center (KDC)
+                        * Configure Apache (httpd)
+                        * Configure DNS (bind)
+                        * Configure the KDC to enable PKINIT
+
+                      To accept the default shown in brackets, press the Enter key.
+
+                      WARNING: conflicting time&date synchronization service 'chronyd' will be disabled
+                      in favor of ntpd
+
+                      Enter the fully qualified domain name of the computer
+                      on which you're setting up server software. Using the form
+                      <hostname>.<domainname>
+                      Example: master.example.com.
+
+                      # confirm the hostname and Enter
+                      Server host name [ipa.kbuor.local]: ENTER
+
+                      Warning: skipping DNS resolution of host dlp.ipa.srv.world
+                      The domain name has been determined based on the host name.
+
+                      # confirm the domain name and Enter
+                      Please confirm the domain name [kbuor.local]: ENTER
+
+                      The kerberos protocol requires a Realm name to be defined.
+                      This is typically the domain name converted to uppercase.
+
+                      # confirm the realm name and Enter
+                      Please provide a realm name [KBUOR.LOCAL]: ENTER
+                      Certain directory server operations require an administrative user.
+                      This user is referred to as the Directory Manager and has full access
+                      to the Directory for system management tasks and will be added to the
+                      instance of directory server created for IPA.
+                      The password must be at least 8 characters long.
+
+                      # set Directory Manager's password
+                      Directory Manager password:
+                      Password (confirm):
+
+                      The IPA server requires an administrative user, named 'admin'.
+                      This user is a regular system account used for IPA server administration.
+
+                      # set IPA admin's password
+                      IPA admin password:
+                      Password (confirm):
+
+                      Checking DNS domain ipa.srv.world., please wait ...
+                      # if you set DNS fowarder, answer [yes]
+                      Do you want to configure DNS forwarders? [yes]:
+                      Following DNS servers are configured in /etc/resolv.conf: 8.8.8.8,1.1.1.1
+                      # if you search reverse zone, answer [yes]
+                      Do you want to configure these servers as DNS forwarders? [yes]:
+                      All DNS servers from /etc/resolv.conf were added. You can enter additional addresses now:
+                      Enter an IP address for a DNS forwarder, or press Enter to skip:
+                      Checking DNS forwarders, please wait ...
+                      DNS server 10.0.0.10: answer to query '. SOA' is missing DNSSEC signatures (no RRSIG data)
+                      Please fix forwarder configuration to enable DNSSEC support.
+                      (For BIND 9 add directive "dnssec-enable yes;" to "options {}")
+                      WARNING: DNSSEC validation will be disabled
+                      Do you want to search for missing reverse zones? [yes]:
+
+                      The IPA Master Server will be configured with:
+                      Hostname:       ipa.kbuor.local
+                      IP address(es): 10.0.14.101
+                      Domain name:    kbuor.local
+                      Realm name:     KBUOR.LOCAL
+
+                      BIND DNS server will be configured to serve IPA domain with:
+                      Forwarders:       10.0.14.101
+                      Forward policy:   only
+                      Reverse zone(s):  No reverse zone
+
+                      # confirm settings and proceed with [yes]
+                      Continue to configure the system with these values? [no]: yes
+
+                      The following operations may take some minutes to complete.
+                      Please wait until the prompt is returned.
+
+                      Configuring NTP daemon (ntpd)
+                        [1/4]: stopping ntpd
+                        [2/4]: writing configuration
+                        [3/4]: configuring ntpd to start on boot
+                        [4/4]: starting ntpd
+                      Done configuring NTP daemon (ntpd).
+                      Configuring directory server (dirsrv). Estimated time: 30 seconds
+                        [1/45]: creating directory server instance
+                        [2/45]: enabling ldapi
+                        [3/45]: configure autobind for root
+
+                      .....
+                      .....
+
+                      Client configuration complete.
+                      The ipa-client-install command was successful
+
+                      ==============================================================================
+                      Setup complete
+
+                      Next steps:
+                              1. You must make sure these network ports are open:
+                                      TCP Ports:
+                                        * 80, 443: HTTP/HTTPS
+                                        * 389, 636: LDAP/LDAPS
+                                        * 88, 464: kerberos
+                                        * 53: bind
+                                      UDP Ports:
+                                        * 88, 464: kerberos
+                                        * 53: bind
+                                        * 123: ntp
+
+                              2. You can now obtain a kerberos ticket using the command: 'kinit admin'
+                                 This ticket will allow you to use the IPA tools (e.g., ipa user-add)
+                                 and the web user interface.
+
+                      Be sure to back up the CA certificates stored in /root/cacert.p12
+                      These files are required to create replicas. The password for these
+                      files is the Directory Manager password
+
+kinit admin
+klist
+ipa config-mod --defaultshell=/bin/bash
