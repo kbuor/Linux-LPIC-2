@@ -1,0 +1,36 @@
++------------------+                +-------------------+
+|     CentOS 7     |                |  Windows Server   |
+|  ipa.kbuor.local |----------------| cli02.kbuor.local |
+|    10.0.14.101   |                |    10.0.4.104     |
++------------------+                +-------------------+
+
+# Prepare on IPA Server
+ipa host-add cli02.kbuor.local --ip-address=10.0.14.13
+ipa dnsrecord-add kbuor.local cli02 --a-rec 10.0.14.13
+ipa dnsrecord-add 14.0.10.in-addr.arpa 13 --ptr-record cli02.kbuor.local.
+ipa-getkeytab -s ipa.kbuor.local -p host/cli02.kbuor.local -e arcfour-hmac -k /etc/krb5.keytab.cli02 -p
+(Note your password)
+
+# Configure on Windows
+# IMPORTANT!!! Rename Computer as a same name with dns recrod added in IPA Server, Ex: cli02.kbuor.local. Only rename to hostname, not FQDN (Ex: cli02)
+# Run Command prompt or PowerShell with Admin Priveleges
+
+ksetup /setdomain KBUOR.LOCAL
+ksetup /addkdc KBUOR.LOCAL ipa.kbuor.local
+ksetup /addpasswd KBUOR.LOCAL ipa.kbuor.local
+ksetup /setcomputerpassword xxxx (xxx = your password at ipa-getkeytab step)
+ksetup /mapuser * *
+
+# Reboot Windows
+
+Open Run => gpedit.msc
+Open Computer Configuration / Windows Settings / Security Settings / Local Policies / Security Options
+Find the line: Network Security: Configure encryption types allowed for Kerberos
+Check boxes: RC4_HMAC_MD5 ; AES128_HMAC_SHA1 ; AES256_HMAC_SHA1
+
+# Create a local user that name is the same with the user on FreeIPA Server for user mapping between FreeIPA and Windows.
+# When logon to Windows, FreeIPA user's password is used, so local Windows user's password is not needed.
+# But if not set local password, it's possbile to logon from Console without password, so it had better to prohibit Console logon or set any complicated password with no expire.
+
+# Reboot Windows, login by FreeIPA User/Password. 
+Ex: robusta@KBUOR.LOCAL
