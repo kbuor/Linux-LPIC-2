@@ -1,3 +1,11 @@
+# Prepare Linux (Centos 7)
+yum install -y open-vm-tools git wget unzip zip epel-release
+yum update -y
+systemctl stop firewalld
+systemctl disable firewalld
+sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
+reboot
+
 # Start deloyment
 # Create partition
 fdisk /dev/sdb << EOF
