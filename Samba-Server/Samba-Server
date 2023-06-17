@@ -97,3 +97,5 @@ root# pdbedit -P "maximum password age" -C 90
 root# pdbedit -P "minimum password age" -C 7
 root# pdbedit -P "bad lockout attempt" -C 8
 root# pdbedit -P "lockout duration" -C -1
+
+chcon -t samba_share_t /home/mydata/
