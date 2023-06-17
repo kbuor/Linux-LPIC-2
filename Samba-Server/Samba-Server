@@ -64,3 +64,36 @@ browseable = No
 
 
 mount -o username=gv1,password=123 //192.168.1.20/gv1 /giaovien
+
+xem thong tin tài khoản samba:
+# pdbedit -L
+# pdbedit -Lv
+# pdbedit -Lv hs1
+
+# pdbedit -L ; xem danh sách user
+# pdbedit -x hpho ; xóa user hpho
+# pdbedit -a hpho ; tạo user hpho password: P@ssword105
+
+Xem policy hiện tại:
+pdbedit -P "min password length"
+pdbedit -P "password history" 
+
+pdbedit -P "maximum password age"
+pdbedit -P "minimum password age"
+pdbedit -P "bad lockout attempt"
+pdbedit -P "lockout duration" 
+
+# Thiết pập policy theo yêu cầu:
+min password length = 8 characters.
+password history = last 4 passwords.
+maximum password age = 90 days.
+minimum password age = 7 days.
+bad lockout attempt = 8 bad logon attempts.
+lockout duration = forever, account must be manually reenabled.
+# Thực hiện các lệnh sau để gán policy:
+root# pdbedit -P "min password length" -C 8
+root# pdbedit -P "password history" -C 4
+root# pdbedit -P "maximum password age" -C 90
+root# pdbedit -P "minimum password age" -C 7
+root# pdbedit -P "bad lockout attempt" -C 8
+root# pdbedit -P "lockout duration" -C -1
