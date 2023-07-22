@@ -43,23 +43,23 @@ vi /etc/dhcp/dhcpd.conf
 
 > Edit line 54: max-lease-time 7200; # Thời gian tối đa cấp IP cho một client, nếu client có yêu cầu về thời gian
 
-## Start DHCP Service
+- Start DHCP Service
 ```shell
 systemctl start dhcpd
 systemctl enable dhcpd
 ```
 
-## Monitor DHCP leasing
+- Monitor DHCP leasing
 ```shell
 cat /var/lib/dhcpd/dhcpd.leases
 ```
 
-## Monitor DHCP log
+- Monitor DHCP log
 ```shell
 cat /var/log/boot.log | grep dhcp
 ```
 
-## Assign IP to specify client
+- Assign IP to specify client
 ```shell
 vi /etc/dhcp/dhcpd.conf
 ```
