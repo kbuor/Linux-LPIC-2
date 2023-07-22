@@ -1,4 +1,4 @@
-## Prepare Linux (Centos 7)
+- Prepare Linux (Centos 7)
 ```shell
 yum install -y open-vm-tools git wget unzip epel-release
 yum update -y
@@ -8,11 +8,11 @@ sed -i "s/=enforcing/=disabled/g" /etc/sysconfig/selinux
 reboot
 ```
 
-## Install DHCP Server package
+- Install DHCP Server package
 ```shell
 yum install -y dhcp
 ```
-## Configure DHCP Server
+- Configure DHCP Server
 ```shell
 cp /usr/share/doc/dhcp*/dhcpd.conf.example /etc/dhcp/dhcpd.conf
 vi /etc/dhcp/dhcpd.conf
