@@ -107,3 +107,11 @@ RESOLVCONF=no
 # startup options for the server
 OPTIONS="-u bind -4"
 ```
+> 3. Restart dịch vụ DNS
+```shell
+sudo systemctl restart bind9
+```
+> 4. Sửa file cấu hình DNS Server `/etc/bind/named.conf.options`
+```shell
+sudo nano /etc/bind/named.conf.options
+```
