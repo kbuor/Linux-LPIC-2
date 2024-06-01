@@ -208,3 +208,13 @@ include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
 
+> 4. Tạo file `forward zone`
+
+```shell
+touch /var/named/forward.kbuor.io.local
+```
+
+> 5. Thêm vào nội dung file `forward zone`
+```shell
+vi /var/named/forward.kbuor.io.local
+```
