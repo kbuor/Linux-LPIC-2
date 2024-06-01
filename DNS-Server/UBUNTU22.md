@@ -16,3 +16,10 @@ Domain: `kbuor.io.local`
 ```shell
 apt update -y && apt upgrade -y
 ```
+
+## TRIỂN KHAI
+---
+> 1. Cài đặt gói `bind9` , `bind9utils` và `bind9-doc`
+```shell
+sudo apt install bind9 bind9utils bind9-doc
+```
