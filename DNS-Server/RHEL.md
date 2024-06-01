@@ -208,14 +208,9 @@ include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
 
-> 4. Tạo file `forward zone`
-
+> 4. Thêm vào nội dung file `forward zone`
 ```shell
 touch /var/named/forward.kbuor.io.local
-```
-
-> 5. Thêm vào nội dung file `forward zone`
-```shell
 vi /var/named/forward.kbuor.io.local
 ```
 ```shell
@@ -233,8 +228,9 @@ $TTL 86400
 
 dns     IN      A       10.10.10.101
 ```
-> 6. Thêm vào nội dung file `reverse zone`
+> 5. Thêm vào nội dung file `reverse zone`
 ```shell
+touch /var/named/reverse.kbuor.io.local
 vi /var/named/reverse.kbuor.io.local
 ```
 ```shell
