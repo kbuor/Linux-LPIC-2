@@ -92,7 +92,7 @@ log-facility local7;
 > Tạo pool DHCP
 ```shell
 subnet 10.10.10.0 netmask 255.255.255.0 {
-  range 10.10.10.51 10.10.10.99;
+  range 10.10.10.103 10.10.10.199;
   option domain-name-servers 10.10.10.101;
   option domain-name "kbuor.io.local";
   option routers 10.10.10.10;
@@ -111,7 +111,7 @@ max-lease-time 7200;
 log-facility local7;
 
 subnet 10.10.10.0 netmask 255.255.255.0 {
-  range 10.10.10.51 10.10.10.99;
+  range 10.10.10.103 10.10.10.199;
   option domain-name-servers 10.10.10.101;
   option domain-name "kbuor.io.local";
   option routers 10.10.10.10;
