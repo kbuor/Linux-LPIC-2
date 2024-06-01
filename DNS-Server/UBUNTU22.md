@@ -174,3 +174,7 @@ options {
         listen-on-v6 { any; };
 };
 ```
+> 5. Sửa file `/etc/bind/named.conf.local` để khai báo các zone DNS
+```shell
+sudo nano /etc/bind/named.conf.local
+```
