@@ -115,6 +115,9 @@ listen-on port 53 { 127.0.0.1; 10.10.10.101; };
 ```shell
 allow-query     { localhost; 10.10.10.0/24 };
 ```
+
+> Thêm vào file để khai báo các DNS Zone:
+
 ```shell
 zone "kbuor.io.local" IN {
         type master;
@@ -128,6 +131,8 @@ zone "10.10.10.in-addr.arpa" IN {
         allow-update { none; };
 };
 ```
+
+> Nội dung hoàn chỉnh
 
 ```shell
 //
