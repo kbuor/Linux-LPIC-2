@@ -95,13 +95,20 @@ Installed:
 
 Complete!
 ```
+
+> 2. Đặt hostname
+
 ```shell
 hostnamectl set-hostname dns.kbuor.io.local
 ```
 
+> 3. Sửa file `/etc/named.conf`
+
 ```shell
 vi /etc/named.conf
 ```
+> Sửa các dòng sau:
+
 ```shell
 listen-on port 53 { 127.0.0.1; 10.10.10.101; };
 ```
