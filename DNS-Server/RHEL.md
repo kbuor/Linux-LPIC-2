@@ -174,7 +174,23 @@ zone "10.10.10.in-addr.arpa" IN {
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
-![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/ce795f41-1e39-475c-9385-af9c0efc9ef5)
+```shell
+listen-on port 53 { 127.0.0.1; 10.10.10.101; };
+```
+```shell
+allow-query     { localhost; 10.10.10.0/24 };
+```
+```shell
+zone "kbuor.io.local" IN {
+        type master;
+        file "forward.kbuor.io.local";
+        allow-update { none; };
+};
 
-![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/047804cc-7311-487b-aaf0-189ed203f1d7)
+zone "10.10.10.in-addr.arpa" IN {
+        type master;
+        file "reverse.kbuor.io.local";
+        allow-update { none; };
+};
+```
 
