@@ -72,6 +72,50 @@ Complete!
 ```
 > 2. Chỉnh sửa file cấu hình DHCP Server
 ```shell
-cp /usr/share/doc/dhcp*/dhcpd.conf.example /etc/dhcp/dhcpd.conf
 vi /etc/dhcp/dhcpd.conf
+```
+> Xóa hết nội dung mẫu trong file, thay thế bằng nội dung bên dưới
+
+> Khai báo domain name và thời gian thuê IP từ DHCP Server
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 10.10.10.101;
+
+default-lease-time 600;
+max-lease-time 7200;
+```
+> Khai báo địa chỉ ghi DHCP log
+
+```shell
+log-facility local7;
+```
+> Tạo pool DHCP
+```shell
+subnet 10.10.10.0 netmask 255.255.255.0 {
+  range 10.10.10.51 10.10.10.99;
+  option domain-name-servers 10.10.10.101;
+  option domain-name "kbuor.io.local";
+  option routers 10.10.10.10;
+  option broadcast-address 10.10.10.255;
+  default-lease-time 600;
+}
+```
+> File cấu hình hoàn chỉnh
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 10.10.10.101;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+log-facility local7;
+
+subnet 10.10.10.0 netmask 255.255.255.0 {
+  range 10.10.10.51 10.10.10.99;
+  option domain-name-servers 10.10.10.101;
+  option domain-name "kbuor.io.local";
+  option routers 10.10.10.10;
+  option broadcast-address 10.10.10.255;
+  default-lease-time 600;
+}
 ```
