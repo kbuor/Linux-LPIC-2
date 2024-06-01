@@ -121,3 +121,15 @@ acl "trusted" {
         20.20.20.0/24; 
 };
 ```
+> Thêm nội dung bên dưới vào block `option`
+```shell
+recursion yes;
+allow-recursion { kbuor; };    
+listen-on { 20.20.20.101; };   
+allow-transfer { none; };      
+
+forwarders {
+        8.8.8.8;
+        8.8.4.4;
+};
+```
