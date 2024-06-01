@@ -18,7 +18,7 @@ dnf install -y open-vm-tools git wget unzip zip epel-release vim net-tools
 dnf update -y
 systemctl stop firewalld
 systemctl disable firewalld
-setenforcing 0
+setenforce 0
 sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
 reboot
 ```
