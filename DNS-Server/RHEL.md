@@ -220,6 +220,7 @@ vi /var/named/forward.kbuor.io.local
 ```
 ```shell
 $TTL 86400
+
 @       IN      SOA     kbuor.io.local. root.kbuor.io.local. (
                         2024060101      ; Serial
                         3600            ; Refresh
@@ -231,4 +232,23 @@ $TTL 86400
 @       IN      NS      dns.kbuor.io.local.
 
 dns     IN      A       10.10.10.101
+```
+> 6. Thêm vào nội dung file `reverse zone`
+```shell
+vi /var/named/reverse.kbuor.io.local
+```
+```shell
+$TTL 86400
+
+@       IN      SOA     kbuor.io.local. root.kbuor.io.local. (
+                        2024060101      ; Serial
+                        3600            ; Refresh
+                        1800            ; Retry
+                        604800          ; Expire
+                        86400           ; Minimun TTL
+                        )
+
+@       IN      NS      dns.kbuor.io.local.
+
+101     IN      PTR     dns.kbuor.io.local.
 ```
