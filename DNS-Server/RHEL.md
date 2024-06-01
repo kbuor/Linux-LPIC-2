@@ -1,4 +1,4 @@
-> 1. Cài đặt gói bind và bind-utils
+> 1. Cài đặt gói `bind` và `bind-utils`
 ```shell
 yum install bind bind-utils -y
 ```
