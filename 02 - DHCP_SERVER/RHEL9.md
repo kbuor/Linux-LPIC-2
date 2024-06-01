@@ -196,7 +196,7 @@ host dns {
 systemctl restart dhcpd
 ```
 
-> Kiểm tra DHCP log
+> 2. Kiểm tra DHCP log
 ```shell
 cat /var/log/boot.log | grep dhcp
 ```
