@@ -1,4 +1,6 @@
-> yum install bind bind-utils -y
+```shell
+yum install bind bind-utils -y
+```
 
 ```shell
 Last metadata expiration check: 0:26:26 ago on Sat Jun  1 08:42:37 2024.
