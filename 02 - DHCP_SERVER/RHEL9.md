@@ -70,3 +70,8 @@ Installed:
 
 Complete!
 ```
+> 2. Chỉnh sửa file cấu hình DHCP Server
+```shell
+cp /usr/share/doc/dhcp*/dhcpd.conf.example /etc/dhcp/dhcpd.conf
+vi /etc/dhcp/dhcpd.conf
+```
