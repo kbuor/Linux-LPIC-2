@@ -1,0 +1,46 @@
+apt install bind9 bind9utils bind9-doc -y
+
+systemctl status bind9
+
+vi /etc/bind/named.conf.options
+
+// allow only LAN traffic from 192.168.2.0-192.168.2.255
+acl LAN {
+192.168.2.0/24;
+};
+options {
+        directory "/var/cache/bind"; // default directory
+        allow-query { localhost; LAN; }; // allow queries from localhost and 192.168.2.0-192.168.2.255
+        forwarders { 1.1.1.1; }; // use CloudFlare 1.1.1.1 DNS as a forwarder
+        recursion yes;  // allow recursive queries
+};
+
+
+named-checkconf /etc/bind/named.conf.options
+
+vi /etc/bind/named.conf.local
+
+zone "cherry.example" IN { \\ define the forward zone
+        type master;
+        file "/etc/bind/zones/cherry.example";
+};
+zone "0.116.10.in-addr.arpa" IN { \\ define the reverse zone
+        type master;
+        file "/etc/bind/zones/cherry.example.rev";
+};
+
+named-checkconf /etc/bind/named.conf.options
+
+mkdir /etc/bind/zones
+
+cp /etc/bind/db.local /etc/bind/zones/cherry.example
+
+named-checkzone cherry.example /etc/bind/zones/cherry.example
+
+cp /etc/bind/db.127 /etc/bind/zones/cherry.example.rev
+
+
+named-checkzone cherry.example /etc/bind/zones/cherry.example.rev
+
+systemctl restart bind9
+
