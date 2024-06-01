@@ -153,7 +153,7 @@ Jun 02 02:53:38 dhcp.kbuor.io.local systemd[1]: Started DHCPv4 Server Daemon.
 
 ## CÁC TÁC VỤ THƯỜNG DÙNG
 ---
-> Assign IP cố định cho một host cụ thể
+> 1. Assign IP cố định cho một host cụ thể
 
 > Chỉnh sửa file cấu hình DHCP Server
 ```shell
