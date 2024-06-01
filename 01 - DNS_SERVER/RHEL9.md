@@ -14,8 +14,8 @@ Domain: `kbuor.io.local`
 ---
 > Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
 ```shell
-yum install -y open-vm-tools git wget unzip zip epel-release vim net-tools
-yum update -y
+dnf install -y open-vm-tools git wget unzip zip epel-release vim net-tools
+dnf update -y
 systemctl stop firewalld
 systemctl disable firewalld
 sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
@@ -26,7 +26,7 @@ reboot
 ---
 > 1. Cài đặt gói `bind` và `bind-utils`
 ```shell
-yum install bind bind-utils -y
+dnf install bind bind-utils -y
 ```
 
 ```shell
