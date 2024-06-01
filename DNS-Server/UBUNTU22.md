@@ -9,3 +9,10 @@ Gateway: `20.20.20.20`
 Hostname: `dns.kbuor.io.local`
 
 Domain: `kbuor.io.local`
+
+## CHUẨN BỊ
+---
+> Update repository
+```shell
+apt update -y && apt upgrade -y
+```
