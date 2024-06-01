@@ -119,3 +119,8 @@ subnet 10.10.10.0 netmask 255.255.255.0 {
   default-lease-time 600;
 }
 ```
+> 3. Start dịch vụ DHCP Server
+```shell
+systemctl start dhcpd
+systemctl enable dhcpd
+```
