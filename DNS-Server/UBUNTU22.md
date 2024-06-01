@@ -115,9 +115,9 @@ sudo systemctl restart bind9
 ```shell
 sudo nano /etc/bind/named.conf.options
 ```
-> Thêm block bên dưới vào đầu file, trong đó `trusted` là tên tùy ý của block, `20.20.20.0/24` là dải mạng được phép query đến DNS Server
+> Thêm block bên dưới vào đầu file, trong đó `kbuor` là tên tùy ý của block, `20.20.20.0/24` là dải mạng được phép query đến DNS Server
 ```shell
-acl "trusted" {
+acl "kbuor" {
         20.20.20.0/24; 
 };
 ```
