@@ -238,3 +238,7 @@ Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPACK on 10.10.10.101 to 00:50:56:01:00:be v
 Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPREQUEST for 10.10.10.101 (10.10.10.102) from 00:50:56:01:00:be via 10.10.10.10
 Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPACK on 10.10.10.101 to 00:50:56:01:00:be via 10.10.10.10
 ```
+> 3. Kiểm tra thông tin thuê IP
+```shell
+cat /var/lib/dhcpd/dhcpd.leases
+```
