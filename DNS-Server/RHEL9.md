@@ -324,3 +324,20 @@ vi /etc/resolv.conf
 search kbuor.io.local
 nameserver 10.10.10.101
 ```
+> 10. Kiểm tra DNS Server
+```shell
+nslookup dns.kbuor.io.local
+```
+```shell
+Server:         10.10.10.101
+Address:        10.10.10.101#53
+
+Name:   dns.kbuor.io.local
+Address: 10.10.10.101
+```
+```shell
+nslookup 10.10.10.101
+```
+```shell
+101.10.10.10.in-addr.arpa       name = dns.kbuor.io.local.
+```
