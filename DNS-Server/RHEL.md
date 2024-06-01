@@ -113,7 +113,7 @@ vi /etc/named.conf
 listen-on port 53 { 127.0.0.1; 10.10.10.101; };
 ```
 ```shell
-allow-query     { localhost; 10.10.10.0/24 };
+allow-query     { localhost; 10.10.10.0/24; };
 ```
 
 > Thêm vào file để khai báo các DNS Zone:
@@ -153,7 +153,7 @@ options {
         memstatistics-file "/var/named/data/named_mem_stats.txt";
         secroots-file   "/var/named/data/named.secroots";
         recursing-file  "/var/named/data/named.recursing";
-        allow-query     { localhost; 10.10.10.0/24 };
+        allow-query     { localhost; 10.10.10.0/24; };
 
         /* 
          - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
@@ -265,4 +265,28 @@ restorecon /etc/named.conf
 ```shell
 systemctl start named
 systemctl enable named
+```
+```shell
+● named.service - Berkeley Internet Name Domain (DNS)
+     Loaded: loaded (/usr/lib/systemd/system/named.service; disabled; preset: disabled)
+     Active: active (running) since Sat 2024-06-01 09:52:59 EDT; 3s ago
+    Process: 5216 ExecStartPre=/bin/bash -c if [ ! "$DISABLE_ZONE_CHECKING" == "yes" ]; then /usr/sb>
+    Process: 5218 ExecStart=/usr/sbin/named -u named -c ${NAMEDCONF} $OPTIONS (code=exited, status=0>
+   Main PID: 5219 (named)
+      Tasks: 5 (limit: 11108)
+     Memory: 17.8M
+        CPU: 63ms
+     CGroup: /system.slice/named.service
+             └─5219 /usr/sbin/named -u named -c /etc/named.conf
+
+Jun 01 09:52:59 dns.kbuor.io.local named[5219]: zone kbuor.io.local/IN: loaded serial 2024060101
+Jun 01 09:52:59 dns.kbuor.io.local named[5219]: zone localhost/IN: loaded serial 0
+Jun 01 09:52:59 dns.kbuor.io.local named[5219]: all zones loaded
+Jun 01 09:52:59 dns.kbuor.io.local systemd[1]: Started Berkeley Internet Name Domain (DNS).
+Jun 01 09:52:59 dns.kbuor.io.local named[5219]: running
+Jun 01 09:52:59 dns.kbuor.io.local named[5219]: zone kbuor.io.local/IN: sending notifies (serial 202>
+Jun 01 09:53:00 dns.kbuor.io.local named[5219]: network unreachable resolving './DNSKEY/IN': 2001:7f>
+Jun 01 09:53:00 dns.kbuor.io.local named[5219]: network unreachable resolving './DNSKEY/IN': 2001:50>
+Jun 01 09:53:00 dns.kbuor.io.local named[5219]: managed-keys-zone: Initializing automatic trust anch>
+Jun 01 09:53:00 dns.kbuor.io.local named[5219]: resolver priming query complete
 ```
