@@ -287,4 +287,70 @@ sudo named-checkconf
 ```shell
 sudo systemctl restart bind9
 ```
-> 10. Kiểm tra dịch vụ DNS
+> 10. Trỏ DNS Server về `20.20.20.101`
+```shell
+sudo nano /etc/netplan/00-installer-config.yaml
+```
+```shell
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens33:
+      addresses:
+      - 20.20.20.101/24
+      nameservers:
+        addresses:
+        - 20.20.20.101
+        search:
+        - kbuor.io.local
+      routes:
+      - to: default
+        via: 20.20.20.20
+  version: 2
+```
+```shell
+sudo nano /etc/resolv.conf
+```
+```shell
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 20.20.20.101
+options edns0 trust-ad
+search kbuor.io.local
+```
+
+> 11. Kiểm tra dịch vụ DNS
+```shell
+nslookup dns.kbuor.io.local
+```
+```shell
+Server:         20.20.20.101
+Address:        20.20.20.101#53
+
+Name:   dns.kbuor.io.local
+Address: 20.20.20.101
+```
+```shell
+nslookup 20.20.20.101
+```
+```shell
+101.20.20.20.in-addr.arpa       name = dns.kbuor.io.local.
+```
