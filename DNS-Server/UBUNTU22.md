@@ -178,3 +178,37 @@ options {
 ```shell
 sudo nano /etc/bind/named.conf.local
 ```
+> Thêm forward zone cho domain `kbuor.io.local`
+```shell
+zone "kbuor.io.local" {
+    type primary;
+    file "/etc/bind/zones/db.kbuor.io.local";
+};
+```
+> Thêm reverse zone cho subnet `20.20.20.0/24`
+```shell
+zone "20.20.20.in-addr.arpa" {
+    type primary;
+    file "/etc/bind/zones/db.20.20.20";
+};
+```
+> File hoàn chỉnh sau khi chỉnh sửa
+```shell
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "kbuor.io.local" {
+    type primary;
+    file "/etc/bind/zones/db.kbuor.io.local";
+};
+
+zone "20.20.20.in-addr.arpa" {
+    type primary;
+    file "/etc/bind/zones/db.20.20.20";
+};
+```
