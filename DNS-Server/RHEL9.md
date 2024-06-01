@@ -1,5 +1,14 @@
 ## CHUẨN BỊ
 ---
+> Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
+```shell
+yum install -y open-vm-tools git wget unzip zip epel-release vim net-tools
+yum update -y
+systemctl stop firewalld
+systemctl disable firewalld
+sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
+reboot
+```
 
 ## TRIỂN KHAI
 ---
