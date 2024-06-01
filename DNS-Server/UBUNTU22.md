@@ -212,9 +212,37 @@ zone "20.20.20.in-addr.arpa" {
     file "/etc/bind/zones/db.20.20.20";
 };
 ```
-> 6. Tạo file forward zone
+> 6. Tạo và thêm nội dung vào file forward zone
 ```shell
 sudo mkdir /etc/bind/zones
 sudo cp /etc/bind/db.local /etc/bind/zones/db.kbuor.io.local
 sudo nano /etc/bind/zones/db.kbuor.io.local
+```
+> Sửa thông tin cho record `SOA`
+```shell
+@       IN      SOA     kbuor.io.local. root.kbuor.io.local. (
+```
+> Sửa thông tin cho record `NS`
+```shell
+@       IN      NS      dns.kbuor.io.local.
+```
+> Sửa thông tin cho record `A`
+```shell
+dns     IN      A       20.20.20.101
+```
+> File hoàn chỉnh sau khi chỉnh sửa
+```shell
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     kbuor.oi.local. root.kbuor.io.local. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      dns.kbuor.io.local.
+dns     IN      A       20.20.20.101
 ```
