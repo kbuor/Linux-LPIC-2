@@ -94,3 +94,10 @@ Installed:
 
 Complete!
 ```
+```shell
+hostnamectl set-hostname dns.kbuor.io.local
+```
+
+```shell
+vi /etc/named.conf
+```
