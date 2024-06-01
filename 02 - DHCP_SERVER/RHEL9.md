@@ -123,4 +123,30 @@ subnet 10.10.10.0 netmask 255.255.255.0 {
 ```shell
 systemctl start dhcpd
 systemctl enable dhcpd
+systemctl status dhcpd
+```
+```shell
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sun 2024-06-02 02:53:38 +07; 5s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 4509 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11108)
+     Memory: 5.2M
+        CPU: 11ms
+     CGroup: /system.slice/dhcpd.service
+             └─4509 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dh>
+
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Copyright 2004-2019 Internet Systems>
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: All rights reserved.
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: For info, please visit https://www.i>
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Source compiled to use binary-leases
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Wrote 0 leases to leases file.
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Listening on LPF/ens33/00:50:56:01:0>
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Sending on   LPF/ens33/00:50:56:01:0>
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Sending on   Socket/fallback/fallbac>
+Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Server starting service.
+Jun 02 02:53:38 dhcp.kbuor.io.local systemd[1]: Started DHCPv4 Server Daemon.
 ```
