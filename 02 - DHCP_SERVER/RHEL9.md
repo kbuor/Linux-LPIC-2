@@ -2,11 +2,11 @@
 ---
 Operating System: `AlmaLinux 9.4 (Seafoam Ocelot) (platform:el9)`
 
-IP Address: `10.10.10.101/24`
+IP Address: `10.10.10.102/24`
 
 Gateway: `10.10.10.10`
 
-Hostname: `dns.kbuor.io.local`
+Hostname: `dhcp.kbuor.io.local`
 
 Domain: `kbuor.io.local`
 
@@ -14,7 +14,7 @@ Domain: `kbuor.io.local`
 ---
 > Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
 ```shell
-yum install -y open-vm-tools git wget unzip zip epel-release vim net-tools
+yum install -y open-vm-tools git wget unzip zip epel-release vim net-tools vim
 yum update -y
 systemctl stop firewalld
 systemctl disable firewalld
@@ -24,4 +24,7 @@ reboot
 
 ## TRIỂN KHAI
 ---
-> 1. Cài đặt gói `bind` và `bind-utils`
+> 1. Cài đặt gói `dhcp`
+```shell
+dnf install dhcp
+```
