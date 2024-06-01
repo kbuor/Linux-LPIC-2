@@ -1,3 +1,4 @@
+> 1. Cài đặt gói bind và bind-utils
 ```shell
 yum install bind bind-utils -y
 ```
@@ -102,6 +103,26 @@ hostnamectl set-hostname dns.kbuor.io.local
 vi /etc/named.conf
 ```
 ```shell
+listen-on port 53 { 127.0.0.1; 10.10.10.101; };
+```
+```shell
+allow-query     { localhost; 10.10.10.0/24 };
+```
+```shell
+zone "kbuor.io.local" IN {
+        type master;
+        file "forward.kbuor.io.local";
+        allow-update { none; };
+};
+
+zone "10.10.10.in-addr.arpa" IN {
+        type master;
+        file "reverse.kbuor.io.local";
+        allow-update { none; };
+};
+```
+
+```shell
 //
 // named.conf
 //
@@ -173,24 +194,5 @@ zone "10.10.10.in-addr.arpa" IN {
 
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
-```
-```shell
-listen-on port 53 { 127.0.0.1; 10.10.10.101; };
-```
-```shell
-allow-query     { localhost; 10.10.10.0/24 };
-```
-```shell
-zone "kbuor.io.local" IN {
-        type master;
-        file "forward.kbuor.io.local";
-        allow-update { none; };
-};
-
-zone "10.10.10.in-addr.arpa" IN {
-        type master;
-        file "reverse.kbuor.io.local";
-        allow-update { none; };
-};
 ```
 
