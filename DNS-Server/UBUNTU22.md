@@ -266,16 +266,25 @@ sudo nano /etc/bind/zones/db.20.20.20
 > File hoàn chỉnh sau khi chỉnh sửa
 ```shell
 ;
-; BIND data file for local loopback interface
+; BIND reverse data file for local loopback interface
 ;
 $TTL    604800
-@       IN      SOA     kbuor.oi.local. root.kbuor.io.local. (
-                              2         ; Serial
+@       IN      SOA     kbuor.io.local. root.kbuor.io.local. (
+                              1         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      dns.kbuor.io.local.
-dns     IN      A       20.20.20.101
+101     IN      PTR     dns.kbuor.io.local.
 ```
+> 8. Kiểm tra cú pháp của các file configure
+```shell
+sudo named-checkconf
+```
+> 9. Restart dịch vụ DNS
+```shell
+sudo systemctl restart bind9
+```
+> 10. Kiểm tra dịch vụ DNS
