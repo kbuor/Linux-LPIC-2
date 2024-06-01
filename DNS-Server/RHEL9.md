@@ -1,3 +1,7 @@
+## THÔNG TIN CHUNG
+---
+
+
 ## CHUẨN BỊ
 ---
 > Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
