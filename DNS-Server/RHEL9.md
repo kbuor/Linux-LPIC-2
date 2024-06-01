@@ -1,9 +1,13 @@
 ## THÔNG TIN CHUNG
 ---
 OS: AlmaLinux 9.4 (Seafoam Ocelot) (platform:el9)
+
 IP: 20.20.20.101/24
+
 GW: 20.20.20.20
+
 Hostname: dns.kbuor.io.local
+
 Domain: kbuor.io.local
 
 ## CHUẨN BỊ
