@@ -95,3 +95,15 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ```
+> 2. Sửa file `/etc/default/named` cho phép DNS Server hoạt động ở IPv4
+```shell
+sudo nano /etc/default/named
+```
+```shell
+#
+# run resolvconf?
+RESOLVCONF=no
+
+# startup options for the server
+OPTIONS="-u bind -4"
+```
