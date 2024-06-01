@@ -150,3 +150,65 @@ Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Sending on   Socket/fallback/fa
 Jun 02 02:53:38 dhcp.kbuor.io.local dhcpd[4509]: Server starting service.
 Jun 02 02:53:38 dhcp.kbuor.io.local systemd[1]: Started DHCPv4 Server Daemon.
 ```
+
+## CÁC TÁC VỤ THƯỜNG DÙNG
+---
+> Assign IP cố định cho một host cụ thể
+
+> Chỉnh sửa file cấu hình DHCP Server
+```shell
+vi /etc/dhcp/dhcpd.conf
+```
+> Thêm block `host` vào file
+```shell
+host dns {
+  hardware ethernet 00:50:56:01:00:be;
+  fixed-address 10.10.10.101;
+}
+```
+> File sau khi chỉnh sửa
+
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 10.10.10.101;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+log-facility local7;
+
+subnet 10.10.10.0 netmask 255.255.255.0 {
+  range 10.10.10.103 10.10.10.199;
+  option domain-name-servers 10.10.10.101;
+  option domain-name "kbuor.io.local";
+  option routers 10.10.10.10;
+  option broadcast-address 10.10.10.255;
+  default-lease-time 600;
+}
+
+host dns {
+  hardware ethernet 00:50:56:01:00:be;
+  fixed-address 10.10.10.101;
+}
+```
+> Restart dịch vụ DHCP
+```shell
+systemctl restart dhcpd
+```
+
+> Kiểm tra DHCP log
+```shell
+cat /var/log/boot.log | grep dhcp
+```
+```shell
+Jun  2 02:53:38 dhcp dhcpd[4509]: Internet Systems Consortium DHCP Server 4.4.2b1
+Jun  2 02:53:38 dhcp dhcpd[4509]: Copyright 2004-2019 Internet Systems Consortium.
+Jun  2 02:53:38 dhcp dhcpd[4509]: All rights reserved.
+Jun  2 02:53:38 dhcp dhcpd[4509]: For info, please visit https://www.isc.org/software/dhcp/
+Jun  2 02:53:38 dhcp dhcpd[4509]: Source compiled to use binary-leases
+Jun  2 02:53:38 dhcp dhcpd[4509]: Wrote 0 leases to leases file.
+Jun  2 02:53:38 dhcp dhcpd[4509]: Listening on LPF/ens33/00:50:56:01:00:c0/10.10.10.0/24
+Jun  2 02:53:38 dhcp dhcpd[4509]: Sending on   LPF/ens33/00:50:56:01:00:c0/10.10.10.0/24
+Jun  2 02:53:38 dhcp dhcpd[4509]: Sending on   Socket/fallback/fallback-net
+Jun  2 02:53:38 dhcp dhcpd[4509]: Server starting service.
+```
