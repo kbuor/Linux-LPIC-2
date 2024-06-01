@@ -174,3 +174,7 @@ zone "10.10.10.in-addr.arpa" IN {
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
+![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/ce795f41-1e39-475c-9385-af9c0efc9ef5)
+
+![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/047804cc-7311-487b-aaf0-189ed203f1d7)
+
