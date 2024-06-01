@@ -1,6 +1,5 @@
-```shell
-yum install bind bind-utils -y
-```
+> yum install bind bind-utils -y
+
 ```shell
 Last metadata expiration check: 0:26:26 ago on Sat Jun  1 08:42:37 2024.
 Package bind-utils-32:9.16.23-18.el9_4.1.x86_64 is already installed.
