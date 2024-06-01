@@ -2,9 +2,9 @@
 ---
 Operating System: `AlmaLinux 9.4 (Seafoam Ocelot) (platform:el9)`
 
-IP Address: `20.20.20.101/24`
+IP Address: `10.10.10.101/24`
 
-Gateway: `20.20.20.20`
+Gateway: `10.10.10.10`
 
 Hostname: `dns.kbuor.io.local`
 
