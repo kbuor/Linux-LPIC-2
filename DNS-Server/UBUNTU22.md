@@ -212,3 +212,9 @@ zone "20.20.20.in-addr.arpa" {
     file "/etc/bind/zones/db.20.20.20";
 };
 ```
+> 6. Tạo file forward zone
+```shell
+sudo mkdir /etc/bind/zones
+sudo cp /etc/bind/db.local /etc/bind/zones/db.kbuor.io.local
+sudo nano /etc/bind/zones/db.kbuor.io.local
+```
