@@ -211,4 +211,30 @@ Jun  2 02:53:38 dhcp dhcpd[4509]: Listening on LPF/ens33/00:50:56:01:00:c0/10.10
 Jun  2 02:53:38 dhcp dhcpd[4509]: Sending on   LPF/ens33/00:50:56:01:00:c0/10.10.10.0/24
 Jun  2 02:53:38 dhcp dhcpd[4509]: Sending on   Socket/fallback/fallback-net
 Jun  2 02:53:38 dhcp dhcpd[4509]: Server starting service.
+Jun  2 03:03:29 dhcp dhcpd[4561]: Internet Systems Consortium DHCP Server 4.4.2b1
+Jun  2 03:03:29 dhcp dhcpd[4561]: Copyright 2004-2019 Internet Systems Consortium.
+Jun  2 03:03:29 dhcp dhcpd[4561]: All rights reserved.
+Jun  2 03:03:29 dhcp dhcpd[4561]: For info, please visit https://www.isc.org/software/dhcp/
+Jun  2 03:03:29 dhcp dhcpd[4561]: Source compiled to use binary-leases
+Jun  2 03:03:29 dhcp dhcpd[4561]: Wrote 0 deleted host decls to leases file.
+Jun  2 03:03:29 dhcp dhcpd[4561]: Wrote 0 new dynamic host decls to leases file.
+Jun  2 03:03:29 dhcp dhcpd[4561]: Wrote 0 leases to leases file.
+Jun  2 03:03:29 dhcp dhcpd[4561]: Listening on LPF/ens33/00:50:56:01:00:c0/10.10.10.0/24
+Jun  2 03:03:29 dhcp dhcpd[4561]: Sending on   LPF/ens33/00:50:56:01:00:c0/10.10.10.0/24
+Jun  2 03:03:29 dhcp dhcpd[4561]: Sending on   Socket/fallback/fallback-net
+Jun  2 03:03:29 dhcp dhcpd[4561]: Server starting service.
+Jun  2 03:05:22 dhcp dhcpd[4561]: DHCPDISCOVER from 00:50:56:01:00:be via ens33
+Jun  2 03:05:22 dhcp dhcpd[4561]: DHCPOFFER on 10.10.10.101 to 00:50:56:01:00:be via ens33
+Jun  2 03:05:24 dhcp dhcpd[4561]: DHCPDISCOVER from 00:50:56:01:00:be via ens33
+Jun  2 03:05:24 dhcp dhcpd[4561]: DHCPOFFER on 10.10.10.101 to 00:50:56:01:00:be via ens33
+Jun  2 03:07:00 dhcp dhcpd[4561]: DHCPDISCOVER from 00:50:56:01:00:be via ens33
+Jun  2 03:07:00 dhcp dhcpd[4561]: DHCPOFFER on 10.10.10.101 to 00:50:56:01:00:be via ens33
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPDISCOVER from 00:50:56:01:00:be via ens33
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPOFFER on 10.10.10.101 to 00:50:56:01:00:be via ens33
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPDISCOVER from 00:50:56:01:00:be via 10.10.10.10
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPOFFER on 10.10.10.101 to 00:50:56:01:00:be via 10.10.10.10
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPREQUEST for 10.10.10.101 (10.10.10.102) from 00:50:56:01:00:be via ens33
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPACK on 10.10.10.101 to 00:50:56:01:00:be via ens33
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPREQUEST for 10.10.10.101 (10.10.10.102) from 00:50:56:01:00:be via 10.10.10.10
+Jun  2 03:07:08 dhcp dhcpd[4561]: DHCPACK on 10.10.10.101 to 00:50:56:01:00:be via 10.10.10.10
 ```
