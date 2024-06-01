@@ -248,3 +248,21 @@ $TTL 86400
 
 101     IN      PTR     dns.kbuor.io.local.
 ```
+> 6. Chuyển quyền cho các file configure
+```shell
+chgrp named -R /var/named
+chown -v root:named /etc/named.conf
+```
+```shell
+ownership of '/etc/named.conf' retained as root:named
+```
+> 7. Cấu hình SELINUX (nếu có bật SELINUX)
+```shell
+restorecon -rv /var/named
+restorecon /etc/named.conf
+```
+> 8. Khởi động dịch vụ
+```shell
+systemctl start named
+systemctl enable named
+```
