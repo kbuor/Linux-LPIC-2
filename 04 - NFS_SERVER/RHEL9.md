@@ -169,24 +169,23 @@ exportfs -v
 
 ## KẾT NỐI TỪ MÁY CLIENT
 ---
-Cài đặt gói nfs-utils trên máy client
-shell
-Sao chép mã
+> Cài đặt gói nfs-utils trên máy client
+```shell
 dnf install -y nfs-utils
-Tạo thư mục mount point trên máy client
-shell
-Sao chép mã
+```
+> Tạo thư mục mount point trên máy client
+```shell
 mkdir -p /mnt/nfsshare
-Mount thư mục chia sẻ từ server NFS
-shell
-Sao chép mã
+```
+> Mount thư mục chia sẻ từ server NFS
+```shell
 mount -t nfs 10.10.10.103:/var/nfsshare /mnt/nfsshare
-Kiểm tra kết quả
-shell
-Sao chép mã
+```
+> Kiểm tra kết quả
+```shell
 df -h /mnt/nfsshare
-Tạo một file test để kiểm tra quyền ghi
-
-shell
-Sao chép mã
+```
+> Tạo một file test để kiểm tra quyền ghi
+```shell
 touch /mnt/nfsshare/testfile
+```
