@@ -156,3 +156,9 @@ subnet 20.20.20.0 netmask 255.255.255.0 {
   default-lease-time 600;
 }
 ```
+> 4. Start dịch vụ DHCP Server
+```shell
+systemctl start dhcpd
+systemctl enable dhcpd
+systemctl status dhcpd
+```
