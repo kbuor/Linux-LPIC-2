@@ -102,3 +102,25 @@ server {
         index index.html;
 }
 ```
+> 4. Tạo thư mục chứa source web
+```shell
+mkdir -p /var/www/kbuor.io.vn/
+```
+> 5. Tạo file index demo
+```shell
+echo "DAY LA WEB SERVER CUA KBUOR" > /var/www/kbuor.io.vn/index.html
+```
+> 6. Kiểm tra cú pháp của các file configure
+```shell
+nginx -t
+```
+```shell
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+> 7. Khởi động lại dịch vụ `nginx`
+```shell
+systemctl restart nginx
+```
+> Kết quả
+
