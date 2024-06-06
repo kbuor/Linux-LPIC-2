@@ -131,3 +131,10 @@ systemctl restart nginx
 
 ![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/5eca2b7b-c25c-4a6b-8230-b221cd3515e3)
 
+## TĂNG BẢO MẬT CHO WEBSERVER BẰNG CÁCH CHẠY VỚI GIAO THỨC HTTPS 
+---
+> 1. Request Commercial SSL Certificate
+> Cài đặt gói `certbot` (Lưu ý, gói `certbot` nằm trong repo Extra Package Enterprise Linux của RHEL. Nếu chưa có, cài đặt gói `epel-release` và update repo)
+```shell
+dnf install certbot
+```
