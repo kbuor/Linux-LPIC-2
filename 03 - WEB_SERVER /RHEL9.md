@@ -344,6 +344,7 @@ lDC2PyO_exy_ZnzN-UyXUzhn_tB8fnztIg7R7c1QfuI
 ![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/8c007ee0-3582-41f5-9d07-6e233bacc2bf)
 
 > Sao khi tạo xong `enter` để tiếp tục
+
 > Kết quả trả về request thành công, certificate, private key, CA được lưu tại `/etc/letsencrypt/live/kbuor.io.vn/`
 ```shell
 Press Enter to Continue
