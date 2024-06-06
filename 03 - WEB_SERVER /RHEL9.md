@@ -286,4 +286,83 @@ Installed:
 
 Complete!
 ```
+> Request một certificate cho domain `kbuor.io.vn`
+```shell
+certbot certonly --manual --preferred-challenges dns -d kbuor.io.vn
+```
+```shell
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Enter email address (used for urgent renewal and security notices)
+ (Enter 'c' to cancel): admin@kbuor.io.vn
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf. You must agree in
+order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: yes
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: yes
+Account registered.
+Requesting a certificate for kbuor.io.vn
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.kbuor.io.vn.
+
+with the following value:
+
+lDC2PyO_exy_ZnzN-UyXUzhn_tB8fnztIg7R7c1QfuI
+
+Before continuing, verify the TXT record has been deployed. Depending on the DNS
+provider, this may take some time, from a few seconds to multiple minutes. You can
+check if it has finished deploying with aid of online tools, such as the Google
+Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.kbuor.io.vn.
+Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
+value(s) you've just added.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+> Tạo DNS record tại nơi quản trị tên miền với thông tin được hiển thị
+```shell
+_acme-challenge.kbuor.io.vn.
+
+with the following value:
+
+lDC2PyO_exy_ZnzN-UyXUzhn_tB8fnztIg7R7c1QfuI
+```
+
+![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/8c007ee0-3582-41f5-9d07-6e233bacc2bf)
+
+> Sao khi tạo xong `enter` để tiếp tục
+> Kết quả trả về request thành công, certificate, private key, CA được lưu tại `/etc/letsencrypt/live/kbuor.io.vn/`
+```shell
+Press Enter to Continue
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/kbuor.io.vn/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/kbuor.io.vn/privkey.pem
+This certificate expires on 2024-09-04.
+These files will be updated when the certificate renews.
+
+NEXT STEPS:
+- This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
+We were unable to subscribe you the EFF mailing list because your e-mail address appears to be invalid. You can try again later by visiting https://act.eff.org.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+
 
