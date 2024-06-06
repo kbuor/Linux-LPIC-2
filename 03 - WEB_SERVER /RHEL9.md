@@ -382,3 +382,18 @@ server {
         index index.html;
 }
 ```
+> Kiểm tra cấu hình `nginx`
+```shell
+nginx -t
+```
+```shell
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+> Khởi động lại dịch vụ `nginx`
+```shell
+systemctl restart nginx
+```
+> Kiểm tra kết quả
+
+![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/3cc89be4-17c6-4231-9bc0-4d386c257e2d)
