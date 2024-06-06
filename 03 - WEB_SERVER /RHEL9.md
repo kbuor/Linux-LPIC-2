@@ -127,5 +127,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 systemctl restart nginx
 ```
 > Kết quả
+
+
 ![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/5eca2b7b-c25c-4a6b-8230-b221cd3515e3)
 
