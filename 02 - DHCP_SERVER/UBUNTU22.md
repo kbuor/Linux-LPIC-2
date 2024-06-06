@@ -14,7 +14,7 @@ Domain: `kbuor.io.local`
 ---
 > Update repository
 ```shell
-apt update -y && apt upgrade -y
+sudo apt update -y && apt upgrade -y
 ```
 
 ## TRIỂN KHAI
@@ -158,9 +158,9 @@ subnet 20.20.20.0 netmask 255.255.255.0 {
 ```
 > 4. Start dịch vụ DHCP Server
 ```shell
-systemctl start isc-dhcp-server
-systemctl enable isc-dhcp-server
-systemctl status isc-dhcp-server
+sudo systemctl start isc-dhcp-server
+sudo systemctl enable isc-dhcp-server
+sudo systemctl status isc-dhcp-server
 ```
 ```shell
 ● isc-dhcp-server.service - ISC DHCP IPv4 server
@@ -191,7 +191,7 @@ Jun 06 03:42:56 dhcp dhcpd[22500]: Server starting service.
 
 > Chỉnh sửa file cấu hình DHCP Server
 ```shell
-vi /etc/dhcp/dhcpd.conf
+sudo nano /etc/dhcp/dhcpd.conf
 ```
 > Thêm block `host` vào file
 ```shell
@@ -227,12 +227,12 @@ host dns {
 ```
 > Restart dịch vụ DHCP
 ```shell
-systemctl restart isc-dhcp-server
+sudo systemctl restart isc-dhcp-server
 ```
 
 > 2. Kiểm tra DHCP log
 ```shell
-journalctl -u isc-dhcp-server
+sudo journalctl -u isc-dhcp-server
 ```
 ```shell
 Jun 06 03:32:16 dhcp systemd[1]: Started ISC DHCP IPv4 server.
@@ -316,5 +316,5 @@ lines 1-77
 ```
 > 3. Kiểm tra thông tin thuê IP
 ```shell
-cat /var/lib/dhcp/dhcpd.leases
+sudo cat /var/lib/dhcp/dhcpd.leases
 ```
