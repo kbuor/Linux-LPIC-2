@@ -106,6 +106,10 @@ server {
 ```shell
 mkdir -p /var/www/kbuor.io.vn/
 ```
+> Set quyền và sở hữu cho thư mục chứa source
+```shell
+chown -R nginx:nginx /var/www
+```
 > 5. Tạo file index demo
 ```shell
 echo "DAY LA WEB SERVER CUA KBUOR" > /var/www/kbuor.io.vn/index.html
@@ -123,4 +127,5 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 systemctl restart nginx
 ```
 > Kết quả
+![image](https://github.com/kbuor/Linux-LPIC-2/assets/77895173/5eca2b7b-c25c-4a6b-8230-b221cd3515e3)
 
