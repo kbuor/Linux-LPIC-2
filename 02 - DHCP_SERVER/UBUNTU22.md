@@ -196,7 +196,7 @@ vi /etc/dhcp/dhcpd.conf
 > Thêm block `host` vào file
 ```shell
 host dns {
-  hardware ethernet 00:50:56:01:00:be;
+  hardware ethernet 00:50:56:01:00:bf;
   fixed-address 20.20.20.101;
 }
 ```
@@ -221,13 +221,13 @@ subnet 20.20.20.0 netmask 255.255.255.0 {
 }
 
 host dns {
-  hardware ethernet 00:50:56:01:00:be;
+  hardware ethernet 00:50:56:01:00:bf;
   fixed-address 20.20.20.101;
 }
 ```
 > Restart dịch vụ DHCP
 ```shell
-systemctl restart dhcpd
+systemctl restart dhcpd isc-dhcp-server
 ```
 
 > 2. Kiểm tra DHCP log
