@@ -227,7 +227,7 @@ host dns {
 ```
 > Restart dịch vụ DHCP
 ```shell
-systemctl restart dhcpd isc-dhcp-server
+systemctl restart isc-dhcp-server
 ```
 
 > 2. Kiểm tra DHCP log
