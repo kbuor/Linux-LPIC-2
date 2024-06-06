@@ -107,3 +107,52 @@ DHCPDv4_CONF=/etc/dhcp/dhcpd.conf
 INTERFACESv4="ens33"
 INTERFACESv6=""
 ```
+> 3. Chỉnh sửa file cấu hình DHCP Server
+```shell
+sudo nano /etc/dhcp/dhcpd.conf
+```
+> Xóa hết nội dung mẫu trong file, thay thế bằng nội dung bên dưới
+
+> Khai báo domain name và thời gian thuê IP từ DHCP Server
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 20.20.20.201;
+
+default-lease-time 600;
+max-lease-time 7200;
+```
+> Khai báo địa chỉ ghi DHCP log
+
+```shell
+log-facility local7;
+```
+> Tạo pool DHCP
+```shell
+subnet 20.20.20.0 netmask 255.255.255.0 {
+  range 20.20.20.103 20.20.20.199;
+  option domain-name-servers 20.20.20.101;
+  option domain-name "kbuor.io.local";
+  option routers 20.20.20.20;
+  option broadcast-address 20.20.20.255;
+  default-lease-time 600;
+}
+```
+> File cấu hình hoàn chỉnh
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 20.20.20.201;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+log-facility local7;
+
+subnet 20.20.20.0 netmask 255.255.255.0 {
+  range 20.20.20.103 20.20.20.199;
+  option domain-name-servers 20.20.20.201;
+  option domain-name "kbuor.io.local";
+  option routers 20.20.20.20;
+  option broadcast-address 20.20.20.255;
+  default-lease-time 600;
+}
+```
