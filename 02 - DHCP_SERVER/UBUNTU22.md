@@ -158,7 +158,30 @@ subnet 20.20.20.0 netmask 255.255.255.0 {
 ```
 > 4. Start dịch vụ DHCP Server
 ```shell
-systemctl start dhcpd
-systemctl enable dhcpd
-systemctl status dhcpd
+systemctl start isc-dhcp-server
+systemctl enable isc-dhcp-server
+systemctl status isc-dhcp-server
+```
+```shell
+● isc-dhcp-server.service - ISC DHCP IPv4 server
+     Loaded: loaded (/lib/systemd/system/isc-dhcp-server.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2024-06-06 03:42:56 UTC; 8s ago
+       Docs: man:dhcpd(8)
+   Main PID: 22500 (dhcpd)
+      Tasks: 4 (limit: 2219)
+     Memory: 4.5M
+        CPU: 10ms
+     CGroup: /system.slice/isc-dhcp-server.service
+             └─22500 dhcpd -user dhcpd -group dhcpd -f -4 -pf /run/dhcp-server/dhcpd.pid -cf /etc/dhcp/dhcpd.conf ens33
+
+Jun 06 03:42:56 dhcp dhcpd[22500]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:42:56 dhcp dhcpd[22500]: Wrote 0 leases to leases file.
+Jun 06 03:42:56 dhcp sh[22500]: Wrote 0 leases to leases file.
+Jun 06 03:42:56 dhcp dhcpd[22500]: Listening on LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp sh[22500]: Listening on LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp dhcpd[22500]: Sending on   LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp sh[22500]: Sending on   LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp dhcpd[22500]: Sending on   Socket/fallback/fallback-net
+Jun 06 03:42:56 dhcp sh[22500]: Sending on   Socket/fallback/fallback-net
+Jun 06 03:42:56 dhcp dhcpd[22500]: Server starting service.
 ```
