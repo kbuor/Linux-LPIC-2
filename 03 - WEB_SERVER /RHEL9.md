@@ -27,7 +27,7 @@ reboot
 ---
 > 1. Cài đặt gói `nginx` từ repository của Alma Linux 9
 ```shell
-dnf install instal
+dnf install nginx
 ```
 ```shell
 Last metadata expiration check: 0:13:20 ago on Thu Jun  6 20:31:04 2024.
@@ -98,7 +98,7 @@ server {
         listen 80;
         server_name kbuor.io.vn;
 
-        root /var/www/kbuor.io.vn/index.html;
+        root /var/www/kbuor.io.vn;
         index index.html;
 }
 ```
