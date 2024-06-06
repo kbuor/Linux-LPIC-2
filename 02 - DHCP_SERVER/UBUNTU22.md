@@ -140,7 +140,7 @@ subnet 20.20.20.0 netmask 255.255.255.0 {
 > File cấu hình hoàn chỉnh
 ```shell
 option domain-name "kbuor.io.local";
-option domain-name-servers 20.20.20.201;
+option domain-name-servers 20.20.20.101;
 
 default-lease-time 600;
 max-lease-time 7200;
@@ -149,7 +149,7 @@ log-facility local7;
 
 subnet 20.20.20.0 netmask 255.255.255.0 {
   range 20.20.20.103 20.20.20.199;
-  option domain-name-servers 20.20.20.201;
+  option domain-name-servers 20.20.20.101;
   option domain-name "kbuor.io.local";
   option routers 20.20.20.20;
   option broadcast-address 20.20.20.255;
@@ -184,4 +184,53 @@ Jun 06 03:42:56 dhcp sh[22500]: Sending on   LPF/ens33/00:50:56:01:00:c1/20.20.2
 Jun 06 03:42:56 dhcp dhcpd[22500]: Sending on   Socket/fallback/fallback-net
 Jun 06 03:42:56 dhcp sh[22500]: Sending on   Socket/fallback/fallback-net
 Jun 06 03:42:56 dhcp dhcpd[22500]: Server starting service.
+```
+## CÁC TÁC VỤ THƯỜNG DÙNG
+---
+> 1. Assign IP cố định cho một host cụ thể
+
+> Chỉnh sửa file cấu hình DHCP Server
+```shell
+vi /etc/dhcp/dhcpd.conf
+```
+> Thêm block `host` vào file
+```shell
+host dns {
+  hardware ethernet 00:50:56:01:00:be;
+  fixed-address 20.20.20.101;
+}
+```
+> File sau khi chỉnh sửa
+
+```shell
+option domain-name "kbuor.io.local";
+option domain-name-servers 20.20.20.101;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+log-facility local7;
+
+subnet 20.20.20.0 netmask 255.255.255.0 {
+  range 20.20.20.103 20.20.20.199;
+  option domain-name-servers 20.20.20.101;
+  option domain-name "kbuor.io.local";
+  option routers 20.20.20.20;
+  option broadcast-address 20.20.20.255;
+  default-lease-time 600;
+}
+
+host dns {
+  hardware ethernet 00:50:56:01:00:be;
+  fixed-address 20.20.20.101;
+}
+```
+> Restart dịch vụ DHCP
+```shell
+systemctl restart dhcpd
+```
+
+> 2. Kiểm tra DHCP log
+```shell
+cat /var/log/boot.log | grep dhcp
 ```
