@@ -232,5 +232,5 @@ systemctl restart isc-dhcp-server
 
 > 2. Kiểm tra DHCP log
 ```shell
-cat /var/log/boot.log | grep dhcp
+journalctl -u isc-dhcp-server
 ```
