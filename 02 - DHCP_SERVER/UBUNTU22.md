@@ -80,3 +80,7 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ```
+> 2. Sửa file `/etc/default/isc-dhcp-server` để xác định configure IPv4 và Interface sẽ sử dụng
+```shell
+sudo nano /etc/default/isc-dhcp-server
+```
