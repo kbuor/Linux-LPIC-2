@@ -14,7 +14,7 @@ Domain: `kbuor.io.local`
 ---
 > Update repository
 ```shell
-apt update -y && apt upgrade -y
+sudo apt update -y && apt upgrade -y
 ```
 
 ## TRIỂN KHAI
