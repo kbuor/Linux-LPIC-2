@@ -316,5 +316,5 @@ lines 1-77
 ```
 > 3. Kiểm tra thông tin thuê IP
 ```shell
-cat /var/lib/dhcpd/dhcpd.leases
+cat /var/lib/dhcp/dhcpd.leases
 ```
