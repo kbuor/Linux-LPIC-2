@@ -85,3 +85,20 @@ systemctl enable nginx
 systemctl start nginx
 systemctl status nginx
 ```
+> (Optional). Khai báo dns record tại nơi quản lý tên miền
+
+> 3. Tạo file Virtual Host cho domain `kbuor.io.vn`
+```shell
+vi /etc/nginx/conf.d/kbuor.io.vn.conf
+```
+> Tạo block `server` với thông tin như bên dưới
+
+```shell
+server {
+        listen 80;
+        server_name kbuor.io.vn;
+
+        root /var/www/kbuor.io.vn/index.html;
+        index index.html;
+}
+```
