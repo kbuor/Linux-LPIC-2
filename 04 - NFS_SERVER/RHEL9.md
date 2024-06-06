@@ -179,7 +179,7 @@ mkdir -p /mnt/nfsshare
 ```
 > Mount thư mục chia sẻ từ server NFS
 ```shell
-mount -t nfs 10.10.10.103:/var/nfsshare /mnt/nfsshare
+mount -t nfs 10.10.10.104:/var/nfsshare /mnt/nfsshare
 ```
 > Kiểm tra kết quả
 ```shell
