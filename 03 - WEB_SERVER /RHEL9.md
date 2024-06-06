@@ -365,5 +365,20 @@ If you like Certbot, please consider supporting our work by:
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
+> Sửa file `/etc/nginx/conf.d/kbuor.io.vn.conf` cho phép nginx chạy ở `443` với `ssl` và `https`
+```shell
+vi /etc/nginx/conf.d/kbuor.io.vn.conf
+```
+> Thêm block server 443
 
+```shell
+server {
+        listen 443 ssl;
+        server_name kbuor.io.vn;
+        ssl_certificate         /etc/letsencrypt/live/kbuor.io.vn/fullchain.pem;
+        ssl_certificate_key     /etc/letsencrypt/live/kbuor.io.vn/privkey.pem;
 
+        root /var/www/kbuor.io.vn;
+        index index.html;
+}
+```
