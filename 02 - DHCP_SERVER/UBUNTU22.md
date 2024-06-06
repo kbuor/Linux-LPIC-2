@@ -234,3 +234,87 @@ systemctl restart isc-dhcp-server
 ```shell
 journalctl -u isc-dhcp-server
 ```
+```shell
+Jun 06 03:32:16 dhcp systemd[1]: Started ISC DHCP IPv4 server.
+Jun 06 03:32:16 dhcp dhcpd[22249]: Internet Systems Consortium DHCP Server 4.4.1
+Jun 06 03:32:16 dhcp dhcpd[22249]: Copyright 2004-2018 Internet Systems Consortium.
+Jun 06 03:32:16 dhcp sh[22249]: Internet Systems Consortium DHCP Server 4.4.1
+Jun 06 03:32:16 dhcp sh[22249]: Copyright 2004-2018 Internet Systems Consortium.
+Jun 06 03:32:16 dhcp sh[22249]: All rights reserved.
+Jun 06 03:32:16 dhcp sh[22249]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:32:16 dhcp dhcpd[22249]: All rights reserved.
+Jun 06 03:32:16 dhcp dhcpd[22249]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:32:16 dhcp dhcpd[22249]: Config file: /etc/dhcp/dhcpd.conf
+Jun 06 03:32:16 dhcp sh[22249]: Config file: /etc/dhcp/dhcpd.conf
+Jun 06 03:32:16 dhcp dhcpd[22249]: Database file: /var/lib/dhcp/dhcpd.leases
+Jun 06 03:32:16 dhcp sh[22249]: Database file: /var/lib/dhcp/dhcpd.leases
+Jun 06 03:32:16 dhcp dhcpd[22249]: PID file: /run/dhcp-server/dhcpd.pid
+Jun 06 03:32:16 dhcp sh[22249]: PID file: /run/dhcp-server/dhcpd.pid
+Jun 06 03:32:16 dhcp dhcpd[22249]: Wrote 0 leases to leases file.
+Jun 06 03:32:16 dhcp sh[22249]: Wrote 0 leases to leases file.
+Jun 06 03:32:16 dhcp dhcpd[22249]: 
+Jun 06 03:32:16 dhcp dhcpd[22249]: No subnet declaration for ens33 (20.20.20.102).
+Jun 06 03:32:16 dhcp sh[22249]: No subnet declaration for ens33 (20.20.20.102).
+Jun 06 03:32:16 dhcp dhcpd[22249]: ** Ignoring requests on ens33.  If this is not what
+Jun 06 03:32:16 dhcp sh[22249]: ** Ignoring requests on ens33.  If this is not what
+Jun 06 03:32:16 dhcp dhcpd[22249]:    you want, please write a subnet declaration
+Jun 06 03:32:16 dhcp sh[22249]:    you want, please write a subnet declaration
+Jun 06 03:32:16 dhcp dhcpd[22249]:    in your dhcpd.conf file for the network segment
+Jun 06 03:32:16 dhcp sh[22249]:    in your dhcpd.conf file for the network segment
+Jun 06 03:32:16 dhcp dhcpd[22249]:    to which interface ens33 is attached. **
+Jun 06 03:32:16 dhcp sh[22249]:    to which interface ens33 is attached. **
+Jun 06 03:32:16 dhcp dhcpd[22249]: 
+Jun 06 03:32:16 dhcp dhcpd[22249]: 
+Jun 06 03:32:16 dhcp dhcpd[22249]: Not configured to listen on any interfaces!
+Jun 06 03:32:16 dhcp sh[22249]: Not configured to listen on any interfaces!
+Jun 06 03:32:16 dhcp dhcpd[22249]: 
+Jun 06 03:32:16 dhcp dhcpd[22249]: If you think you have received this message due to a bug rather
+Jun 06 03:32:16 dhcp sh[22249]: If you think you have received this message due to a bug rather
+Jun 06 03:32:16 dhcp dhcpd[22249]: than a configuration issue please read the section on submitting
+Jun 06 03:32:16 dhcp sh[22249]: than a configuration issue please read the section on submitting
+Jun 06 03:32:16 dhcp dhcpd[22249]: bugs on either our web page at www.isc.org or in the README file
+Jun 06 03:32:16 dhcp sh[22249]: bugs on either our web page at www.isc.org or in the README file
+Jun 06 03:32:16 dhcp dhcpd[22249]: before submitting a bug.  These pages explain the proper
+Jun 06 03:32:16 dhcp sh[22249]: before submitting a bug.  These pages explain the proper
+Jun 06 03:32:16 dhcp dhcpd[22249]: process and the information we find helpful for debugging.
+Jun 06 03:32:16 dhcp sh[22249]: process and the information we find helpful for debugging.
+Jun 06 03:32:16 dhcp dhcpd[22249]: 
+Jun 06 03:32:16 dhcp dhcpd[22249]: exiting.
+Jun 06 03:32:16 dhcp sh[22249]: exiting.
+Jun 06 03:32:16 dhcp systemd[1]: isc-dhcp-server.service: Main process exited, code=exited, status=1/FAILURE
+Jun 06 03:32:16 dhcp systemd[1]: isc-dhcp-server.service: Failed with result 'exit-code'.
+Jun 06 03:42:56 dhcp systemd[1]: Started ISC DHCP IPv4 server.
+Jun 06 03:42:56 dhcp dhcpd[22500]: Internet Systems Consortium DHCP Server 4.4.1
+Jun 06 03:42:56 dhcp sh[22500]: Internet Systems Consortium DHCP Server 4.4.1
+Jun 06 03:42:56 dhcp dhcpd[22500]: Copyright 2004-2018 Internet Systems Consortium.
+Jun 06 03:42:56 dhcp sh[22500]: Copyright 2004-2018 Internet Systems Consortium.
+Jun 06 03:42:56 dhcp dhcpd[22500]: All rights reserved.
+Jun 06 03:42:56 dhcp sh[22500]: All rights reserved.
+Jun 06 03:42:56 dhcp dhcpd[22500]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:42:56 dhcp sh[22500]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:42:56 dhcp dhcpd[22500]: Config file: /etc/dhcp/dhcpd.conf
+Jun 06 03:42:56 dhcp sh[22500]: Config file: /etc/dhcp/dhcpd.conf
+Jun 06 03:42:56 dhcp dhcpd[22500]: Database file: /var/lib/dhcp/dhcpd.leases
+Jun 06 03:42:56 dhcp sh[22500]: Database file: /var/lib/dhcp/dhcpd.leases
+Jun 06 03:42:56 dhcp dhcpd[22500]: PID file: /run/dhcp-server/dhcpd.pid
+Jun 06 03:42:56 dhcp sh[22500]: PID file: /run/dhcp-server/dhcpd.pid
+Jun 06 03:42:56 dhcp dhcpd[22500]: Internet Systems Consortium DHCP Server 4.4.1
+Jun 06 03:42:56 dhcp dhcpd[22500]: Copyright 2004-2018 Internet Systems Consortium.
+Jun 06 03:42:56 dhcp dhcpd[22500]: All rights reserved.
+Jun 06 03:42:56 dhcp dhcpd[22500]: For info, please visit https://www.isc.org/software/dhcp/
+Jun 06 03:42:56 dhcp dhcpd[22500]: Wrote 0 leases to leases file.
+Jun 06 03:42:56 dhcp sh[22500]: Wrote 0 leases to leases file.
+Jun 06 03:42:56 dhcp dhcpd[22500]: Listening on LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp sh[22500]: Listening on LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp dhcpd[22500]: Sending on   LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp sh[22500]: Sending on   LPF/ens33/00:50:56:01:00:c1/20.20.20.0/24
+Jun 06 03:42:56 dhcp dhcpd[22500]: Sending on   Socket/fallback/fallback-net
+Jun 06 03:42:56 dhcp sh[22500]: Sending on   Socket/fallback/fallback-net
+Jun 06 03:42:56 dhcp dhcpd[22500]: Server starting service.
+Jun 06 03:46:45 dhcp systemd[1]: Stopping ISC DHCP IPv4 server...
+lines 1-77
+```
+> 3. Kiểm tra thông tin thuê IP
+```shell
+cat /var/lib/dhcpd/dhcpd.leases
+```
