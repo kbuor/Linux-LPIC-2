@@ -382,6 +382,36 @@ server {
         index index.html;
 }
 ```
+
+> Điều chỉnh block server http 80 để tự động redirect về https 443
+```shell
+server {
+        listen 80;
+        server_name kbuor.io.vn;
+
+        return 301 https://kbuor.io.vn$request_uri;
+
+}
+```
+> File config hoàn hình sau khi chỉnh sửa
+```shell
+server {
+        listen 80;
+        server_name kbuor.io.vn;
+
+        return 301 https://kbuor.io.vn$request_uri;
+
+}
+server {
+        listen 443 ssl;
+        server_name kbuor.io.vn;
+        ssl_certificate         /etc/letsencrypt/live/kbuor.io.vn/fullchain.pem;
+        ssl_certificate_key     /etc/letsencrypt/live/kbuor.io.vn/privkey.pem;
+
+        root /var/www/kbuor.io.vn;
+        index index.html;
+}
+```
 > Kiểm tra cấu hình `nginx`
 ```shell
 nginx -t
