@@ -196,7 +196,8 @@ ftpd_banner=Welcome to KBUOR FTP service.
 # (Warning! chroot'ing can be very dangerous. If using chroot, make sure that
 # the user does not have write access to the top level directory within the
 # chroot)
-#chroot_local_user=YES
+chroot_local_user=YES
+allow_writeable_chroot=YES
 #chroot_list_enable=YES
 # (default follows)
 #chroot_list_file=/etc/vsftpd/chroot_list
@@ -223,6 +224,8 @@ listen_ipv6=YES
 
 pam_service_name=vsftpd
 userlist_enable=YES
+userlist_file=/etc/vsftpd/user_list
+userlist_deny=NO
 ```
 > Tạo user cho FTP
 ```shell
