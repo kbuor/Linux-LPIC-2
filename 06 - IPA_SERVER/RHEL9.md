@@ -1745,7 +1745,197 @@ Installed:
 
 Complete!
 ```
-ipa-server-install --setup-dns
+> Bootstrap IPA Server
+```shell
+ipa-server-install
+```
+> Lựa chọn sử dụng DNS tích hợp hoặc DNS bên ngoài
+```shell
+The log file for this installation can be found in /var/log/ipaserver-install.log
+==============================================================================
+This program will set up the IPA Server.
+Version 4.11.0
+
+This includes:
+  * Configure a stand-alone CA (dogtag) for certificate management
+  * Configure the NTP client (chronyd)
+  * Create and configure an instance of Directory Server
+  * Create and configure a Kerberos Key Distribution Center (KDC)
+  * Configure Apache (httpd)
+  * Configure SID generation
+  * Configure the KDC to enable PKINIT
+
+To accept the default shown in brackets, press the Enter key.
+
+Do you want to configure integrated DNS (BIND)? [no]:
+```
+> Set hostname cho IPA server
+```shell
+Do you want to configure integrated DNS (BIND)? [no]: no
+
+Enter the fully qualified domain name of the computer
+on which you're setting up server software. Using the form
+<hostname>.<domainname>
+Example: master.example.com
+
+
+Server host name [ipa.kbuor.io.local]:
+```
+> Xác nhận domain name sẽ sử dụng
+```shell
+Server host name [ipa.kbuor.io.local]: ipa.kbuor.io.local
+
+The domain name has been determined based on the host name.
+
+Please confirm the domain name [kbuor.io.local]:
+```
+> Đặt `REALM NAME` sẽ sử dụng, thông thường `REALM NAME` sẽ là domain name viết hoa.
+```shell
+Please confirm the domain name [kbuor.io.local]: kbuor.io.local
+
+The kerberos protocol requires a Realm name to be defined.
+This is typically the domain name converted to uppercase.
+
+Please provide a realm name [KBUOR.IO.LOCAL]:
+```
+> Đặt password cho Directory Manager (quản lý user)
+```shell
+Please provide a realm name [KBUOR.IO.LOCAL]: KBUOR.IO.LOCAL
+Certain directory server operations require an administrative user.
+This user is referred to as the Directory Manager and has full access
+to the Directory for system management tasks and will be added to the
+instance of directory server created for IPA.
+The password must be at least 8 characters long.
+
+Directory Manager password: 
+```
+> Đặt password cho user admin của IPA
+```shell
+Directory Manager password: 
+Password (confirm): 
+
+The IPA server requires an administrative user, named 'admin'.
+This user is a regular system account used for IPA server administration.
+
+IPA admin password:
+```
+> Đặt NetBIOS name cho domain (tên ngắn gọn của domain)
+```shell
+IPA admin password: 
+Password (confirm): 
+
+Trust is configured but no NetBIOS domain name found, setting it now.
+Enter the NetBIOS name for the IPA domain.
+Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
+Example: EXAMPLE.
+
+
+NetBIOS domain name [KBUOR]:
+```
+> Cấu hình NTP Server
+```shell
+NetBIOS domain name [KBUOR]: KBUOR
+
+Do you want to configure chrony with NTP server or pool address? [no]: yes
+Enter NTP source server addresses separated by comma, or press Enter to skip: 0.asia.pool.ntp.org
+Enter a NTP source pool address, or press Enter to skip:
+```
+> Kiểm tra thông tin và xác nhận
+```shell
+The IPA Master Server will be configured with:
+Hostname:       ipa.kbuor.io.local
+IP address(es): 10.10.10.105
+Domain name:    kbuor.io.local
+Realm name:     KBUOR.IO.LOCAL
+
+The CA will be configured with:
+Subject DN:   CN=Certificate Authority,O=KBUOR.IO.LOCAL
+Subject base: O=KBUOR.IO.LOCAL
+Chaining:     self-signed
+
+NTP server:     0.asia.pool.ntp.org
+Continue to configure the system with these values? [no]:
+```
+> Quá trình cài đặt diễn ra và hoàn tất
+```shell
+...
+...
+...
+  [4/8]: updating Kerberos config
+'dns_lookup_kdc' already set to 'true', nothing to do.
+  [5/8]: activating sidgen task
+  [6/8]: restarting Directory Server to take MS PAC and LDAP plugins changes into account
+  [7/8]: adding fallback group
+  [8/8]: adding SIDs to existing users and groups
+This step may take considerable amount of time, please wait..
+Done.
+Configuring client side components
+This program will set up IPA client.
+Version 4.11.0
+
+Using existing certificate '/etc/ipa/ca.crt'.
+Client hostname: ipa.kbuor.io.local
+Realm: KBUOR.IO.LOCAL
+DNS Domain: kbuor.io.local
+IPA Server: ipa.kbuor.io.local
+BaseDN: dc=kbuor,dc=io,dc=local
+
+Configured /etc/sssd/sssd.conf
+Systemwide CA database updated.
+Adding SSH public key from /etc/ssh/ssh_host_ed25519_key.pub
+Adding SSH public key from /etc/ssh/ssh_host_ecdsa_key.pub
+Adding SSH public key from /etc/ssh/ssh_host_rsa_key.pub
+Could not update DNS SSHFP records.
+SSSD enabled
+Configured /etc/openldap/ldap.conf
+Configured /etc/ssh/ssh_config
+Configured /etc/ssh/sshd_config.d/04-ipa.conf
+Configuring kbuor.io.local as NIS domain.
+Client configuration complete.
+The ipa-client-install command was successful
+
+Please add records in this file to your DNS system: /tmp/ipa.system.records.3l9i8elg.db
+==============================================================================
+Setup complete
+
+Next steps:
+        1. You must make sure these network ports are open:
+                TCP Ports:
+                  * 80, 443: HTTP/HTTPS
+                  * 389, 636: LDAP/LDAPS
+                  * 88, 464: kerberos
+                UDP Ports:
+                  * 88, 464: kerberos
+                  * 123: ntp
+
+        2. You can now obtain a kerberos ticket using the command: 'kinit admin'
+           This ticket will allow you to use the IPA tools (e.g., ipa user-add)
+           and the web user interface.
+
+Be sure to back up the CA certificates stored in /root/cacert.p12
+These files are required to create replicas. The password for these
+files is the Directory Manager password
+The ipa-server-install command was successful
+```
+> Cập nhập các dns record được liệt kê trong file `Please add records in this file to your DNS system: /tmp/ipa.system.records.3l9i8elg.db` vào DNS Server
+```shell
+cat /tmp/ipa.system.records.3l9i8elg.db
+```
+```shell
+_kerberos-master._tcp.kbuor.io.local. 3600 IN SRV 0 100 88 ipa.kbuor.io.local.
+_kerberos-master._udp.kbuor.io.local. 3600 IN SRV 0 100 88 ipa.kbuor.io.local.
+_kerberos._tcp.kbuor.io.local. 3600 IN SRV 0 100 88 ipa.kbuor.io.local.
+_kerberos._udp.kbuor.io.local. 3600 IN SRV 0 100 88 ipa.kbuor.io.local.
+_kerberos.kbuor.io.local. 3600 IN TXT "KBUOR.IO.LOCAL"
+_kerberos.kbuor.io.local. 3600 IN URI 0 100 "krb5srv:m:tcp:ipa.kbuor.io.local."
+_kerberos.kbuor.io.local. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.kbuor.io.local."
+_kpasswd._tcp.kbuor.io.local. 3600 IN SRV 0 100 464 ipa.kbuor.io.local.
+_kpasswd._udp.kbuor.io.local. 3600 IN SRV 0 100 464 ipa.kbuor.io.local.
+_kpasswd.kbuor.io.local. 3600 IN URI 0 100 "krb5srv:m:tcp:ipa.kbuor.io.local."
+_kpasswd.kbuor.io.local. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.kbuor.io.local."
+_ldap._tcp.kbuor.io.local. 3600 IN SRV 0 100 389 ipa.kbuor.io.local.
+ipa-ca.kbuor.io.local. 3600 IN A 10.10.10.105
+```
 
 kinit admin
 klist
