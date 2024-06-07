@@ -244,9 +244,46 @@ echo "ftp1" | sudo tee –a /etc/vsftpd/user_list
 ftp1
 ```
 
+> Tạo và phân quyền thư mục cho FTP User
+```shell
+mkdir -p /home/ftp1/ftp/upload
+chmod 550 /home/ftp1/ftp
+chmod 750 /home/ftp1/ftp/upload
+chown -R ftp1: /home/ftp1/ftp
+```
 
 > Start dịch vụ FTP Server
 ```shell
 systemctl start vsftpd
 systemctl enable vsftpd
+systemctl status vsftpd
+```
+```shell
+● vsftpd.service - Vsftpd ftp daemon
+     Loaded: loaded (/usr/lib/systemd/system/vsftpd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2024-06-07 16:48:59 +07; 8min ago
+    Process: 2466 ExecStart=/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf (code=exited, status=0/SUCCESS)
+   Main PID: 2468 (vsftpd)
+      Tasks: 1 (limit: 23165)
+     Memory: 752.0K
+        CPU: 44ms
+     CGroup: /system.slice/vsftpd.service
+             └─2468 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
+
+Jun 07 16:48:59 ftp.kbuor.io.local systemd[1]: Starting Vsftpd ftp daemon...
+Jun 07 16:48:59 ftp.kbuor.io.local systemd[1]: Started Vsftpd ftp daemon.
+```
+> Kiểm tra dịch vụ
+```shell
+ftp ftp.kbuor.io.local
+```
+```shell
+Connected to ftp.kbuor.io.local (10.10.10.105).
+220 Welcome to KBUOR FTP service.
+Name (ftp.kbuor.io.local:root): ftp1
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
 ```
