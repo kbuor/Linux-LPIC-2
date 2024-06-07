@@ -89,6 +89,12 @@ vi /etc/vsftpd/vsftpd.conf
 
 > Cho phép/Từ chôi sử dụng file userlist để chặn truy cập: `userlist_enable=YES`
 
+> Đường dẫn của file userlist: `userlist_file=/etc/vsftpd/user_list`
+
+> Dùng file userlist để cho phép truy cập: `userlist_deny=NO`
+
+> Giới hạn và cho phép truy cập vào thư mục FTP: `chroot_local_user=YES` `allow_writeable_chroot=YES`
+
 > File hoàn chỉnh sau khi chỉnh sửa
 ```shell
 # Example config file /etc/vsftpd/vsftpd.conf
