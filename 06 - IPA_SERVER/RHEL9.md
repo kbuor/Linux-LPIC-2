@@ -458,7 +458,84 @@ _kpasswd.kbuor.io.local. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.kbuor.io.local."
 _ldap._tcp.kbuor.io.local. 3600 IN SRV 0 100 389 ipa.kbuor.io.local.
 ipa-ca.kbuor.io.local. 3600 IN A 10.10.10.105
 ```
+> Hoàn tất quá trình cài đặt
 
+## CÁC TÁC VỤ THƯỜNG DÙNG VỚI IPA SERVER
+---
+> Khởi tạo Kerberos Ticket
+```shell
 kinit admin
+```
+```shell
+Password for admin@KBUOR.IO.LOCAL:
+```
+> Kiểm tra các Kerberos Ticket hiện có
+```shell
 klist
+```
+```shell
+Ticket cache: KCM:0
+Default principal: admin@KBUOR.IO.LOCAL
+
+Valid starting     Expires            Service principal
+06/08/24 06:37:29  06/09/24 06:18:08  krbtgt/KBUOR.IO.LOCAL@KBUOR.IO.LOCAL
+```
+> Hủy ticket
+```shell
+kdestroy
+```
+> Thay đổi shell mặc định cho các IPA user sử dụng /bin/bash
+```shell
 ipa config-mod --defaultshell=/bin/bash
+```
+```shell
+Maximum username length: 32
+Maximum hostname length: 64
+Home directory base: /home
+Default shell: /bin/bash
+Default users group: ipausers
+Default e-mail domain: kbuor.io.local
+Search time limit: 2
+Search size limit: 100
+User search fields: uid,givenname,sn,telephonenumber,ou,title
+Group search fields: cn,description
+Enable migration mode: False
+Certificate Subject base: O=KBUOR.IO.LOCAL
+Password Expiration Notification (days): 4
+Password plugin features: AllowNThash, KDC:Disable Last Success
+SELinux user map order: guest_u:s0$xguest_u:s0$user_u:s0$staff_u:s0-s0:c0.c1023$sysadm_u:s0-s0:c0.c1023$unconfined_u:s0-s0:c0.c1023
+Default SELinux user: unconfined_u:s0-s0:c0.c1023
+Default PAC types: MS-PAC, nfs:NONE
+IPA masters: ipa.kbuor.io.local
+IPA master capable of PKINIT: ipa.kbuor.io.local
+IPA CA servers: ipa.kbuor.io.local
+IPA CA renewal master: ipa.kbuor.io.local
+```
+> Kiểm tra configure của ipa
+```shell
+ipa config-show
+```
+```shell
+Maximum username length: 32
+Maximum hostname length: 64
+Home directory base: /home
+Default shell: /bin/bash
+Default users group: ipausers
+Default e-mail domain: kbuor.io.local
+Search time limit: 2
+Search size limit: 100
+User search fields: uid,givenname,sn,telephonenumber,ou,title
+Group search fields: cn,description
+Enable migration mode: False
+Certificate Subject base: O=KBUOR.IO.LOCAL
+Password Expiration Notification (days): 4
+Password plugin features: AllowNThash, KDC:Disable Last Success
+SELinux user map order: guest_u:s0$xguest_u:s0$user_u:s0$staff_u:s0-s0:c0.c1023$sysadm_u:s0-s0:c0.c1023$unconfined_u:s0-s0:c0.c1023
+Default SELinux user: unconfined_u:s0-s0:c0.c1023
+Default PAC types: MS-PAC, nfs:NONE
+IPA masters: ipa.kbuor.io.local
+IPA master capable of PKINIT: ipa.kbuor.io.local
+IPA CA servers: ipa.kbuor.io.local
+IPA CA renewal master: ipa.kbuor.io.local
+```
+
