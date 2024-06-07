@@ -63,4 +63,38 @@ Installed:
 
 Complete!
 ```
+> Cấu hình FTP Server
 
+> Chỉnh sửa file `/etc/vsftpd/vsftpd.conf`
+```shell
+vi /etc/vsftpd/vsftpd.conf
+```
+> Cho phép/Từ chối Anonymous login: `anonymous_enable=YES`
+
+> Cho phép/Từ chối local user login: `local_enable=YES`
+
+> Cho phép/Từ chối quyền ghi của user: `write_enable=YES`
+
+> Cho phép/Từ chối anonymous upload: `anon_upload_enable=YES`
+
+> Cho phép/Từ chối anonymous ghi vào thư mục: `anon_mkdir_write_enable=YES`
+
+> Cho phép ghi log: `xferlog_enable=YES`
+
+> Sử dụng cổng 20 cho FTP-Data: `connect_from_port_20=YES`
+
+> Nơi lưu trữ log: `xferlog_file=/var/log/xferlog`
+
+> Câu chào: `ftpd_banner=Welcome to Kbuor FTP service.`
+
+> Cho phép/Từ chôi sử dụng file userlist để chặn truy cập: `userlist_enable=YES`
+
+# Create user for FTP
+useradd ftp1
+
+# Start FTP server
+systemctl start vsftpd
+systemctl enable vsftpd
+
+# Manage user login ftp
+vi /etc/vsftpd/user_list
