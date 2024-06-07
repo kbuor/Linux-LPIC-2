@@ -173,6 +173,90 @@ exportfs -v
 ```shell
 dnf install -y nfs-utils
 ```
+```shell
+Last metadata expiration check: 3:23:15 ago on Fri Jun  7 05:44:38 2024.
+Dependencies resolved.
+==========================================================================================================================================================================================================
+ Package                                             Architecture                                Version                                                Repository                                   Size
+==========================================================================================================================================================================================================
+Installing:
+ nfs-utils                                           x86_64                                      1:2.5.4-25.el9                                         baseos                                      429 k
+Installing dependencies:
+ gssproxy                                            x86_64                                      0.8.4-6.el9                                            baseos                                      108 k
+ keyutils                                            x86_64                                      1.6.3-1.el9                                            baseos                                       71 k
+ libev                                               x86_64                                      4.33-5.el9                                             baseos                                       52 k
+ libnfsidmap                                         x86_64                                      1:2.5.4-25.el9                                         baseos                                       60 k
+ libverto-libev                                      x86_64                                      0.3.2-3.el9                                            baseos                                       13 k
+ python3-pyyaml                                      x86_64                                      5.4.1-6.el9                                            baseos                                      190 k
+ quota                                               x86_64                                      1:4.06-6.el9                                           baseos                                      190 k
+ quota-nls                                           noarch                                      1:4.06-6.el9                                           baseos                                       78 k
+ rpcbind                                             x86_64                                      1.2.6-7.el9                                            baseos                                       56 k
+ sssd-nfs-idmap                                      x86_64                                      2.9.4-6.el9_4                                          baseos                                       43 k
+
+Transaction Summary
+==========================================================================================================================================================================================================
+Install  11 Packages
+
+Total download size: 1.3 M
+Installed size: 3.7 M
+Downloading Packages:
+(1/11): keyutils-1.6.3-1.el9.x86_64.rpm                                                                                                                                    86 kB/s |  71 kB     00:00    
+(2/11): gssproxy-0.8.4-6.el9.x86_64.rpm                                                                                                                                   127 kB/s | 108 kB     00:00    
+(3/11): libev-4.33-5.el9.x86_64.rpm                                                                                                                                        61 kB/s |  52 kB     00:00    
+(4/11): libnfsidmap-2.5.4-25.el9.x86_64.rpm                                                                                                                               2.0 MB/s |  60 kB     00:00    
+(5/11): libverto-libev-0.3.2-3.el9.x86_64.rpm                                                                                                                             707 kB/s |  13 kB     00:00    
+(6/11): python3-pyyaml-5.4.1-6.el9.x86_64.rpm                                                                                                                             4.2 MB/s | 190 kB     00:00    
+(7/11): nfs-utils-2.5.4-25.el9.x86_64.rpm                                                                                                                                 7.4 MB/s | 429 kB     00:00    
+(8/11): quota-4.06-6.el9.x86_64.rpm                                                                                                                                       2.6 MB/s | 190 kB     00:00    
+(9/11): rpcbind-1.2.6-7.el9.x86_64.rpm                                                                                                                                    942 kB/s |  56 kB     00:00    
+(10/11): quota-nls-4.06-6.el9.noarch.rpm                                                                                                                                  1.0 MB/s |  78 kB     00:00    
+(11/11): sssd-nfs-idmap-2.9.4-6.el9_4.x86_64.rpm                                                                                                                          1.0 MB/s |  43 kB     00:00    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                     486 kB/s | 1.3 MB     00:02     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                  1/1 
+  Installing       : libnfsidmap-1:2.5.4-25.el9.x86_64                                                                                                                                               1/11 
+  Running scriptlet: rpcbind-1.2.6-7.el9.x86_64                                                                                                                                                      2/11 
+  Installing       : rpcbind-1.2.6-7.el9.x86_64                                                                                                                                                      2/11 
+  Running scriptlet: rpcbind-1.2.6-7.el9.x86_64                                                                                                                                                      2/11 
+Created symlink /etc/systemd/system/multi-user.target.wants/rpcbind.service → /usr/lib/systemd/system/rpcbind.service.
+Created symlink /etc/systemd/system/sockets.target.wants/rpcbind.socket → /usr/lib/systemd/system/rpcbind.socket.
+
+  Installing       : quota-nls-1:4.06-6.el9.noarch                                                                                                                                                   3/11 
+  Installing       : quota-1:4.06-6.el9.x86_64                                                                                                                                                       4/11 
+  Installing       : python3-pyyaml-5.4.1-6.el9.x86_64                                                                                                                                               5/11 
+  Installing       : libev-4.33-5.el9.x86_64                                                                                                                                                         6/11 
+  Installing       : libverto-libev-0.3.2-3.el9.x86_64                                                                                                                                               7/11 
+  Installing       : gssproxy-0.8.4-6.el9.x86_64                                                                                                                                                     8/11 
+  Running scriptlet: gssproxy-0.8.4-6.el9.x86_64                                                                                                                                                     8/11 
+  Installing       : keyutils-1.6.3-1.el9.x86_64                                                                                                                                                     9/11 
+  Running scriptlet: nfs-utils-1:2.5.4-25.el9.x86_64                                                                                                                                                10/11 
+  Installing       : nfs-utils-1:2.5.4-25.el9.x86_64                                                                                                                                                10/11 
+  Running scriptlet: nfs-utils-1:2.5.4-25.el9.x86_64                                                                                                                                                10/11 
+  Installing       : sssd-nfs-idmap-2.9.4-6.el9_4.x86_64                                                                                                                                            11/11 
+  Running scriptlet: sssd-nfs-idmap-2.9.4-6.el9_4.x86_64                                                                                                                                            11/11 
+  Verifying        : gssproxy-0.8.4-6.el9.x86_64                                                                                                                                                     1/11 
+  Verifying        : keyutils-1.6.3-1.el9.x86_64                                                                                                                                                     2/11 
+  Verifying        : libev-4.33-5.el9.x86_64                                                                                                                                                         3/11 
+  Verifying        : libnfsidmap-1:2.5.4-25.el9.x86_64                                                                                                                                               4/11 
+  Verifying        : libverto-libev-0.3.2-3.el9.x86_64                                                                                                                                               5/11 
+  Verifying        : nfs-utils-1:2.5.4-25.el9.x86_64                                                                                                                                                 6/11 
+  Verifying        : python3-pyyaml-5.4.1-6.el9.x86_64                                                                                                                                               7/11 
+  Verifying        : quota-1:4.06-6.el9.x86_64                                                                                                                                                       8/11 
+  Verifying        : quota-nls-1:4.06-6.el9.noarch                                                                                                                                                   9/11 
+  Verifying        : rpcbind-1.2.6-7.el9.x86_64                                                                                                                                                     10/11 
+  Verifying        : sssd-nfs-idmap-2.9.4-6.el9_4.x86_64                                                                                                                                            11/11 
+
+Installed:
+  gssproxy-0.8.4-6.el9.x86_64        keyutils-1.6.3-1.el9.x86_64  libev-4.33-5.el9.x86_64        libnfsidmap-1:2.5.4-25.el9.x86_64  libverto-libev-0.3.2-3.el9.x86_64    nfs-utils-1:2.5.4-25.el9.x86_64 
+  python3-pyyaml-5.4.1-6.el9.x86_64  quota-1:4.06-6.el9.x86_64    quota-nls-1:4.06-6.el9.noarch  rpcbind-1.2.6-7.el9.x86_64         sssd-nfs-idmap-2.9.4-6.el9_4.x86_64 
+
+Complete!
+```
 > Tạo thư mục mount point trên máy client
 ```shell
 mkdir -p /mnt/nfsshare
@@ -184,6 +268,10 @@ mount -t nfs 10.10.10.104:/var/nfsshare /mnt/nfsshare
 > Kiểm tra kết quả
 ```shell
 df -h /mnt/nfsshare
+```
+```shell
+Filesystem                  Size  Used Avail Use% Mounted on
+10.10.10.104:/var/nfsshare  7.4G  1.6G  5.8G  22% /mnt/nfsshare
 ```
 > Tạo một file test để kiểm tra quyền ghi
 ```shell
