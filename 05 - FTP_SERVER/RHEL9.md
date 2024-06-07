@@ -221,11 +221,26 @@ userlist_enable=YES
 > Tạo user cho FTP
 ```shell
 useradd ftp1
+passwd ftp1
+```
+```shell
+Changing password for user ftp1.
+New password: 
+BAD PASSWORD: The password fails the dictionary check - it is based on a dictionary word
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+```
+> Thêm user `ftp1` vào userlist
+```shell
+echo "ftp1" | sudo tee –a /etc/vsftpd/user_list
+```
+```shell
+ftp1
 ```
 
-# Start FTP server
+
+> Start dịch vụ FTP Server
+```shell
 systemctl start vsftpd
 systemctl enable vsftpd
-
-# Manage user login ftp
-vi /etc/vsftpd/user_list
+```
