@@ -538,4 +538,49 @@ IPA master capable of PKINIT: ipa.kbuor.io.local
 IPA CA servers: ipa.kbuor.io.local
 IPA CA renewal master: ipa.kbuor.io.local
 ```
+> Add a FreeIPA user account
+```shell
+ipa user-add robusta --first=Robusta --last=HCM --password
+```
 
+> Lock or unlock a FreeIPA user
+```shell
+ipa user-disable robusta
+ipa user-enable robusta
+```
+
+> Serch a FreeIPA user
+```shell
+ipa user-find robusta
+ipa user-show --raw robusta
+```
+
+> Delete a FreeIPA user
+```shell
+ipa user-del robusta
+```
+
+> Add a FreeIPA group
+```shell
+ipa group-add --desc='Robusta Group' robusgroup
+```
+
+> Add members in a FreeIPA group
+```shell
+ipa group-add-member --users=robusta,kbuor robusgroup
+```
+
+> Add a group in a FreeIPA group
+```shell
+ipa group-add-member --groups=robustahcm robusgroup
+```
+
+> Search a FreeIPA group
+```shell
+ipa group-find robusgroup
+```
+
+> Delete a FreeIPA group
+```shell
+ipa group-del robusgroup
+```
