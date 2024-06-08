@@ -309,3 +309,7 @@ ssl_sslv3=NO
 require_ssl_reuse=NO
 ssl_ciphers=HIGH
 ```
+> Restart service `vsftpd`
+```shell
+systemctl restart vsftpd
+```
