@@ -586,6 +586,30 @@ ipa group-del robusgroup
 ```
 ## JOIN CLIENT TO IPA SERVER
 ---
+---
+Operating System: `AlmaLinux 9.4 (Seafoam Ocelot) (platform:el9)`
+
+IP Address: `10.10.10.107/24`
+
+Gateway: `10.10.10.10`
+
+Hostname: `client01.kbuor.io.local`
+
+Domain: `kbuor.io.local`
+
+---
+> Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
+```shell
+dnf install -y open-vm-tools git wget unzip zip epel-release vim net-tools vim
+dnf update -y
+systemctl stop firewalld
+systemctl disable firewalld
+setenforce 0
+sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
+reboot
+```
+> LƯU Ý: Tạo DNS record (A và PTR) cho client trước khi tiếp tục
+
 > Configure FreeIPA Client
 ```shell
 yum install -y ipa-client
