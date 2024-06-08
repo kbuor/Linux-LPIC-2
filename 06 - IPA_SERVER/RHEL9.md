@@ -668,3 +668,40 @@ ipa-client-install --force-ntpd
 authselect enable-feature with-mkhomedir
 systemctl enable --now oddjobd
 ```
+---
+> Set quyền Sudo cho IPA user
+
+> Thực hiện trên IPA server
+
+> Khởi tạo vé chứng thực:
+```shell
+kinit admin
+```
+> Thêm người dùng mới (nếu cần):
+```shell
+ipa user-add kbuor --first=New --last=User --password
+```
+> Tạo Sudo Rule và gán quyền:
+```shell
+ipa sudorule-add sudo_for_newuser --cmdcat=all --hostcat=all
+ipa sudorule-add-user --users=kbuor sudo_for_newuser
+```
+
+> Thực hiện trên máy Client
+
+> Cấu hình sssd và sudo trên các máy trạm
+
+> Sửa file `/etc/sssd/sssd.conf`
+```shell
+[domain/yourdomain]
+...
+sudo_provider = ipa
+```
+> Sửa file `/etc/nsswitch.conf`
+```shell
+sudoers: files sss
+```
+> Khởi động lại dịch vụ sssd:
+```shell
+sudo systemctl restart sssd
+```
