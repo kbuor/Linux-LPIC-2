@@ -586,7 +586,6 @@ ipa group-del robusgroup
 ```
 ## JOIN CLIENT TO IPA SERVER
 ---
----
 Operating System: `AlmaLinux 9.4 (Seafoam Ocelot) (platform:el9)`
 
 IP Address: `10.10.10.107/24`
@@ -671,7 +670,7 @@ systemctl enable --now oddjobd
 ---
 > Set quyền Sudo cho IPA user
 
-> Thực hiện trên IPA server
+### Thực hiện trên IPA server
 
 > Khởi tạo vé chứng thực:
 ```shell
@@ -687,7 +686,7 @@ ipa sudorule-add sudo_for_newuser --cmdcat=all --hostcat=all
 ipa sudorule-add-user --users=kbuor sudo_for_newuser
 ```
 
-> Thực hiện trên máy Client
+### Thực hiện trên máy Client
 
 > Cấu hình sssd và sudo trên các máy trạm
 
