@@ -584,3 +584,63 @@ ipa group-find robusgroup
 ```shell
 ipa group-del robusgroup
 ```
+## JOIN CLIENT TO IPA SERVER
+---
+> Configure FreeIPA Client
+```shell
+yum install -y ipa-client
+ipa-client-install --force-ntpd
+```
+```shell
+        Discovery was successful!
+        Client hostname: client01.kbuor.io.local
+        Realm: KBUOR.IO.LOCAL
+        DNS Domain: kbuor.io.local
+        IPA Server: ipa.kbuor.io.local
+        BaseDN: dc=kbuor,dc=io,dc=local
+
+        # confirm settings and proceed with [yes]
+        Continue to configure the system with these values? [no]: yes
+
+        Synchronizing time with KDC...
+        Attempting to sync time using ntpd.  Will timeout after 15 seconds
+        # answer with admin
+        User authorized to enroll computers: admin
+        Password for admin@KBUOR.IO.LOCAL:
+        Successfully retrieved CA cert
+            Subject:     CN=Certificate Authority,O=KBUOR.IO.LOCAL
+            Issuer:      CN=Certificate Authority,O=KBUOR.IO.LOCAL
+            Valid From:  2024-06-07 10:44:32
+            Valid Until: 2030-10-07 10:44:32
+
+        Enrolled in IPA realm KBUOR.IO.LOCAL
+        Created /etc/ipa/default.conf
+        New SSSD config will be created
+        Configured sudoers in /etc/nsswitch.conf
+        Configured /etc/sssd/sssd.conf
+        Configured /etc/krb5.conf for IPA realm KBUOR.IO.LOCAL
+        trying https://ipa.kbuor.io.local/ipa/json
+        [try 1]: Forwarding 'schema' to json server 'https://ipa.kbuor.io.local/ipa/json'
+        trying https://ipa.kbuor.io.local/ipa/session/json
+        [try 1]: Forwarding 'ping' to json server 'https://ipa.kbuor.io.local/ipa/session/json'
+        [try 1]: Forwarding 'ca_is_enabled' to json server 'https://ipa.kbuor.io.local/ipa/session/json'
+        Systemwide CA database updated.
+        Adding SSH public key from /etc/ssh/ssh_host_rsa_key.pub
+        Adding SSH public key from /etc/ssh/ssh_host_ecdsa_key.pub
+        Adding SSH public key from /etc/ssh/ssh_host_ed25519_key.pub
+        [try 1]: Forwarding 'host_mod' to json server 'https://ipa.kbuor.io.local/ipa/session/json'
+        Could not update DNS SSHFP records.
+        SSSD enabled
+        Configured /etc/openldap/ldap.conf
+        NTP enabled
+        Configured /etc/ssh/ssh_config
+        Configured /etc/ssh/sshd_config
+        Configuring kbuor.local as NIS domain.
+        Client configuration complete.
+        The ipa-client-install command was successful
+```
+> Enable home directory cho IPA user
+```shell
+authselect enable-feature with-mkhomedir
+systemctl enable --now oddjobd
+```
