@@ -14,37 +14,52 @@ setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/sysconfig/selinux
 
-# Install common package
+> Install common package
+```shell
 yum install -y open-vm-tools epel-release wget zip bind-utils net-tools
 yum update -y
+```
 
-# Check your hostname correctly
-hostnamectl set-hostname mail.kbuor.website
+> Check your hostname correctly
+```shell
+hostnamectl set-hostname mail.kbuor.io.vn
 hostnamectl
+```
 
-# Add to end of your host file your IP address and Hostname
-echo '103.89.85.24 mail.kbuor.website mail' >> /etc/hosts
-
+> Add to end of your host file your IP address and Hostname
+```shell
+echo '103.89.85.24 mail.kbuor.io.vn mail' >> /etc/hosts
 reboot
+```
 
-# Remove Postfix
+> Remove Postfix
+```shell
 yum remove postfix -y
+```
 
-# Install dependence package
+> Install dependence package
+```shell
 yum -y install unzip net-tools sysstat openssh-clients perl-core libaio nmap-ncat libstdc++.so.6
+```
 
-# Download Zimbra
+> Download Zimbra
+```shell
 cd /tmp
 wget https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_3869.RHEL7_64.20190918004220.tgz
+```
 
-# Extract downloaded file
+> Extract downloaded file
+```shell
 tar -xzvf zcs-8*
 cd zcs-8*
 chmod +x install.sh
+```
 
-# Check DNS record
+> Check DNS record
+```shell
 dig A mail.kbuor.website
-
+```
+```shell
             ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> A mail.kbuor.website
             ;; global options: +cmd
             ;; Got answer:
@@ -63,9 +78,11 @@ dig A mail.kbuor.website
             ;; SERVER: 8.8.8.8#53(8.8.8.8)
             ;; WHEN: Sat Oct 29 10:01:54 +07 2022
             ;; MSG SIZE  rcvd: 63
-
+```
+```shell
 dig MX kbuor.website
-
+```
+```shell
             ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> MX kbuor.website
             ;; global options: +cmd
             ;; Got answer:
@@ -84,11 +101,13 @@ dig MX kbuor.website
             ;; SERVER: 8.8.8.8#53(8.8.8.8)
             ;; WHEN: Sat Oct 29 10:02:17 +07 2022
             ;; MSG SIZE  rcvd: 63
-            
-
-# Recommend run script via tmux
+```
+> Recommend run script via tmux
+```shell
 cd /tmp/zcs-8*
 ./install.sh
+```
+```shell
 
                         Operations logged to /tmp/install.log.bnyHvXPW
                         Checking for existing installation...
@@ -386,52 +405,65 @@ cd /tmp/zcs-8*
 
                         Configuration complete - press return to exit
                         
-
-# Update SSH Key for zimbra user
+```
+> Update SSH Key for zimbra user
+```shell
 sudo -u zimbra -i
 zmupdateauthkeys
 exit
+```
 
-# Install Syslog for Administration Dashboard
+> Install Syslog for Administration Dashboard
+```shell
 /opt/zimbra/libexec/zmsyslogsetup
+```
 
-# Enable ClamAV Antivirus
+> Enable ClamAV Antivirus
+```shell
 su - zimbra
 zmprov mcf zimbraAttachmentsScanURL clam://localhost:3310/
 zmprov mcf zimbraAttachmentsScanEnabled TRUE
-
-# Generate DKIM record
+```
+> Generate DKIM record
+```shell
 /opt/zimbra/libexec/zmdkimkeyutil -a -d kbuor.website
+```
 
-# Add DNS record in DNS Server
-# DKIM: 
-# DMARC:
-_DMARC IN v=DMARC1; p=reject; pct=100; rua=mailto:admin@kbuor.website
+> Add DNS record in DNS Server
 
-# SPF:
-@ IN v=spf1 ip4:103.89.85.24 include:kbuor.website mx -all
+> DKIM: 
 
+> DMARC:
+_DMARC IN v=DMARC1; p=reject; pct=100; rua=mailto:admin@kbuor.io.vn
 
-# Secure Zimbra with Let's Encrypt
+> SPF:
+@ IN v=spf1 ip4:103.89.85.24 include:kbuor.io.vn mx -all
+
+---
+> Secure Zimbra with Let's Encrypt
 (Login as root)
-# Install Certbot package
+> Install Certbot package
+```shell
 yum install -y certbot
-
-# Obtaining an SSL Certificate
+```
+> Obtaining an SSL Certificate
+```shell
 certbot certonly -d mail.kbuor.website
-
-# Configure SSL Certificate for Zimbra
+```
+> Configure SSL Certificate for Zimbra
+```shell
 su - zimbra
 zmcontrol stop
-
-# Copy certificate file to correct location
+```
+> Copy certificate file to correct location
+```shell
 mkdir /opt/zimbra/ssl/letsencrypt
 cp /etc/letsencrypt/live/mail.kbuor.website/* /opt/zimbra/ssl/letsencrypt/
 cd /opt/zimbra/ssl/letsencrypt/
 echo > chain.pem
-
-# Paste content below to chain.pem file
-
+```
+> Paste content below to chain.pem file
+```shell
 -----BEGIN CERTIFICATE-----
 MIIFMTCCBBmgAwIBAgISA7KAKK5msndhydn4BNZP5TWiMA0GCSqGSIb3DQEBCwUA
 MDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQD
@@ -523,19 +555,23 @@ oyi3B43njTOQ5yOf+1CceWxG1bQVs5ZufpsMljq4Ui0/1lvh+wjChP4kqKOJ2qxq
 mRGunUHBcnWEvgJBQl9nJEiU0Zsnvgc/ubhPgXRR4Xq37Z0j4r7g1SgEEzwxA57d
 emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 -----END CERTIFICATE-----
-
-
+```
+```shell
 chown zimbra:zimbra /opt/zimbra/ssl/letsencrypt/*
-
-# Verify SSL certificate
+```
+> Verify SSL certificate
+```shell
 cd /opt/zimbra/ssl/letsencrypt
 /opt/zimbra/bin/zmcertmgr verifycrt comm privkey.pem cert.pem chain.pem
-
-# Deploy SSL certificate
+```
+> Deploy SSL certificate
+```shell
 cp /opt/zimbra/ssl/letsencrypt/privkey.pem /opt/zimbra/ssl/zimbra/commercial/commercial.key
 chown zimbra:zimbra /opt/zimbra/ssl/zimbra/commercial/commercial.key
 cd /opt/zimbra/ssl/letsencrypt
 /opt/zimbra/bin/zmcertmgr deploycrt comm cert.pem chain.pem
-
-# Start zimbra service
+```
+> Start zimbra service
+```shell
 zmcontrol restart
+```
