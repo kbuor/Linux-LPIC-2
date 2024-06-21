@@ -1,19 +1,29 @@
-+----------------------+
-|       CentOS 7       |
-|  mail.kbuor.website  |
-|     103.89.85.24     |
-+----------------------+
+## THÔNG TIN CHUNG
+---
+Operating System: `Centos 7 (platform:el7)`
 
-# Prepare CentOS
-# Disable Firewall (FOR DEPLOYMENT ONLY)
+IP Address: `10.10.10.105/24`
+
+Gateway: `10.10.10.10`
+
+Hostname: `mail.kbuor.io.local`
+
+Domain: `kbuor.io.local`
+
+## CHUẨN BỊ
+---
+> Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
+```shell
+dnf install -y open-vm-tools git wget unzip zip epel-release vim net-tools vim
+dnf update -y
 systemctl stop firewalld
 systemctl disable firewalld
-
-# Disable SELinux
 setenforce 0
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
-sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/sysconfig/selinux
-
+sed -i "s/=enforcing/=disabled/" /etc/sysconfig/selinux
+reboot
+```
+## TRIỂN KHAI
+---
 > Install common package
 ```shell
 yum install -y open-vm-tools epel-release wget zip bind-utils net-tools
@@ -22,13 +32,13 @@ yum update -y
 
 > Check your hostname correctly
 ```shell
-hostnamectl set-hostname mail.kbuor.io.vn
+hostnamectl set-hostname mail.kbuor.io.local
 hostnamectl
 ```
 
 > Add to end of your host file your IP address and Hostname
 ```shell
-echo '103.89.85.24 mail.kbuor.io.vn mail' >> /etc/hosts
+echo '103.89.85.24 mail.kbuor.io.local mail' >> /etc/hosts
 reboot
 ```
 
@@ -57,10 +67,10 @@ chmod +x install.sh
 
 > Check DNS record
 ```shell
-dig A mail.kbuor.website
+dig A mail.kbuor.io.local
 ```
 ```shell
-            ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> A mail.kbuor.website
+            ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> A mail.kbuor.io.local
             ;; global options: +cmd
             ;; Got answer:
             ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21229
@@ -69,10 +79,10 @@ dig A mail.kbuor.website
             ;; OPT PSEUDOSECTION:
             ; EDNS: version: 0, flags:; udp: 512
             ;; QUESTION SECTION:
-            ;mail.kbuor.website.            IN      A
+            ;mail.kbuor.io.local.            IN      A
 
             ;; ANSWER SECTION:
-            mail.kbuor.website.     300     IN      A       103.89.85.24
+            mail.kbuor.io.local.     300     IN      A       103.89.85.24
 
             ;; Query time: 50 msec
             ;; SERVER: 8.8.8.8#53(8.8.8.8)
@@ -80,10 +90,10 @@ dig A mail.kbuor.website
             ;; MSG SIZE  rcvd: 63
 ```
 ```shell
-dig MX kbuor.website
+dig MX kbuor.io.local
 ```
 ```shell
-            ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> MX kbuor.website
+            ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.10 <<>> MX kbuor.io.local
             ;; global options: +cmd
             ;; Got answer:
             ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5960
@@ -92,10 +102,10 @@ dig MX kbuor.website
             ;; OPT PSEUDOSECTION:
             ; EDNS: version: 0, flags:; udp: 512
             ;; QUESTION SECTION:
-            ;kbuor.website.                 IN      MX
+            ;kbuor.io.local.                 IN      MX
 
             ;; ANSWER SECTION:
-            kbuor.website.          300     IN      MX      10 mail.kbuor.website.
+            kbuor.io.local.          300     IN      MX      10 mail.kbuor.io.local.
 
             ;; Query time: 51 msec
             ;; SERVER: 8.8.8.8#53(8.8.8.8)
@@ -264,11 +274,11 @@ cd /tmp/zcs-8*
                         Operations logged to /tmp/zmsetup.20220411-024200.log
                         Installing LDAP configuration database...done.
                         Setting defaults...
-                        DNS ERROR resolving MX for mail.kbuor.website
+                        DNS ERROR resolving MX for mail.kbuor.io.local
                         It is suggested that the domain name have an MX record configured in DNS
                         Change domain name? [Yes] yes
-                        Create domain: [mail.kbuor.website] kbuor.website  #Replace by your domain
-                                    MX: mail.kbuor.website (103.89.85.24)
+                        Create domain: [mail.kbuor.io.local] kbuor.io.local  #Replace by your domain
+                                    MX: mail.kbuor.io.local (103.89.85.24)
                                     Interface: 127.0.0.1
                                     Interface: ::1
                                     Interface: 103.89.85.24
@@ -426,7 +436,7 @@ zmprov mcf zimbraAttachmentsScanEnabled TRUE
 ```
 > Generate DKIM record
 ```shell
-/opt/zimbra/libexec/zmdkimkeyutil -a -d kbuor.website
+/opt/zimbra/libexec/zmdkimkeyutil -a -d kbuor.io.local
 ```
 
 > Add DNS record in DNS Server
@@ -434,10 +444,10 @@ zmprov mcf zimbraAttachmentsScanEnabled TRUE
 > DKIM: 
 
 > DMARC:
-_DMARC IN v=DMARC1; p=reject; pct=100; rua=mailto:admin@kbuor.io.vn
+_DMARC IN v=DMARC1; p=reject; pct=100; rua=mailto:admin@kbuor.io.local
 
 > SPF:
-@ IN v=spf1 ip4:103.89.85.24 include:kbuor.io.vn mx -all
+@ IN v=spf1 ip4:103.89.85.24 include:kbuor.io.local mx -all
 
 ---
 > Secure Zimbra with Let's Encrypt
@@ -448,7 +458,7 @@ yum install -y certbot
 ```
 > Obtaining an SSL Certificate
 ```shell
-certbot certonly -d mail.kbuor.website
+certbot certonly -d mail.kbuor.io.local
 ```
 > Configure SSL Certificate for Zimbra
 ```shell
@@ -458,7 +468,7 @@ zmcontrol stop
 > Copy certificate file to correct location
 ```shell
 mkdir /opt/zimbra/ssl/letsencrypt
-cp /etc/letsencrypt/live/mail.kbuor.website/* /opt/zimbra/ssl/letsencrypt/
+cp /etc/letsencrypt/live/mail.kbuor.io.local/* /opt/zimbra/ssl/letsencrypt/
 cd /opt/zimbra/ssl/letsencrypt/
 echo > chain.pem
 ```
