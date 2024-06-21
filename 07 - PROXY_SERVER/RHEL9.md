@@ -106,11 +106,90 @@ acl robusta-deny-01 src 10.10.10.101-10.10.10.110
 ...
 http_access deny robusta-deny-01
 ```
-> Cấp truy cập website
+> Cấm truy cập website
 ```shell
 acl robusta-deny-02 src 10.10.10.111-10.10.10.119
 acl deny_web dstdomain "/etc/squid/denyweb"
 ...
 ...
 http_access deny robusta-deny-02 deny_web
+```
+> Chỉ cho truy cập 1 số trang web
+```shell
+acl robusta-deny-03 src 10.10.10.120-10.10.10.129
+acl allowweb dstdomain "/etc/squid/allowweb"
+...
+...
+http_access allow robusta-deny-03 allowweb
+http_access deny robusta-deny-03
+```
+> Giới hạn giờ truy cập
+```shell
+acl sang time MTWHF 8:00-12:00
+acl chieu time MTWHF 13:00-17:00
+acl dayip4 src 10.10.10.130-10.10.10.139
+acl webtronggio dstdomain "/etc/squid/webtronggio"
+http_access allow robusta-deny-04 webtronggio sang
+http_access allow robusta-deny-04 webtronggio chieu
+http_access allow robusta-deny-04 !sang !chieu
+http_access deny robusta-deny-04
+```
+---
+> Chứng thực user truy cập
+
+> Cài đặt gói `httpd-tools`
+```shell
+dnf -y install httpd-tools
+```
+```shell
+Last metadata expiration check: 0:27:37 ago on Fri Jun 21 23:38:41 2024.
+Dependencies resolved.
+==========================================================================================================================================================================================================
+ Package                                              Architecture                               Version                                              Repository                                     Size
+==========================================================================================================================================================================================================
+Installing:
+ httpd-tools                                          x86_64                                     2.4.57-8.el9                                         appstream                                      80 k
+Installing dependencies:
+ apr                                                  x86_64                                     1.7.0-12.el9_3                                       appstream                                     122 k
+ apr-util                                             x86_64                                     1.6.1-23.el9                                         appstream                                      94 k
+ apr-util-bdb                                         x86_64                                     1.6.1-23.el9                                         appstream                                      12 k
+Installing weak dependencies:
+ apr-util-openssl                                     x86_64                                     1.6.1-23.el9                                         appstream                                      14 k
+
+Transaction Summary
+==========================================================================================================================================================================================================
+Install  5 Packages
+
+Total download size: 322 k
+Installed size: 736 k
+Downloading Packages:
+(1/5): apr-util-bdb-1.6.1-23.el9.x86_64.rpm                                                                                                                               3.3 kB/s |  12 kB     00:03    
+(2/5): apr-util-1.6.1-23.el9.x86_64.rpm                                                                                                                                    26 kB/s |  94 kB     00:03    
+(3/5): apr-util-openssl-1.6.1-23.el9.x86_64.rpm                                                                                                                           619 kB/s |  14 kB     00:00    
+(4/5): apr-1.7.0-12.el9_3.x86_64.rpm                                                                                                                                       33 kB/s | 122 kB     00:03    
+(5/5): httpd-tools-2.4.57-8.el9.x86_64.rpm                                                                                                                                2.9 MB/s |  80 kB     00:00    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                      65 kB/s | 322 kB     00:04     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                  1/1 
+  Installing       : apr-1.7.0-12.el9_3.x86_64                                                                                                                                                        1/5 
+  Installing       : apr-util-bdb-1.6.1-23.el9.x86_64                                                                                                                                                 2/5 
+  Installing       : apr-util-openssl-1.6.1-23.el9.x86_64                                                                                                                                             3/5 
+  Installing       : apr-util-1.6.1-23.el9.x86_64                                                                                                                                                     4/5 
+  Installing       : httpd-tools-2.4.57-8.el9.x86_64                                                                                                                                                  5/5 
+  Running scriptlet: httpd-tools-2.4.57-8.el9.x86_64                                                                                                                                                  5/5 
+  Verifying        : apr-1.7.0-12.el9_3.x86_64                                                                                                                                                        1/5 
+  Verifying        : apr-util-1.6.1-23.el9.x86_64                                                                                                                                                     2/5 
+  Verifying        : apr-util-bdb-1.6.1-23.el9.x86_64                                                                                                                                                 3/5 
+  Verifying        : apr-util-openssl-1.6.1-23.el9.x86_64                                                                                                                                             4/5 
+  Verifying        : httpd-tools-2.4.57-8.el9.x86_64                                                                                                                                                  5/5 
+
+Installed:
+  apr-1.7.0-12.el9_3.x86_64         apr-util-1.6.1-23.el9.x86_64         apr-util-bdb-1.6.1-23.el9.x86_64         apr-util-openssl-1.6.1-23.el9.x86_64         httpd-tools-2.4.57-8.el9.x86_64        
+
+Complete!
 ```
