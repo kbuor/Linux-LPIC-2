@@ -193,3 +193,16 @@ Installed:
 
 Complete!
 ```
+> Sửa file `/etc/squid/squid.conf`
+```shell
+auth_param basic program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd
+auth_param basic children 5
+auth_param basic realm Squid Basic Authentication
+auth_param basic credentialsttl 5 hours
+acl password proxy_auth REQUIRED
+http_access allow password
+```
+> Tạo user proxy
+```shell
+htpasswd -c /etc/squid/.htpasswd robusta
+```
