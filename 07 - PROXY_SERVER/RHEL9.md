@@ -25,3 +25,7 @@ reboot
 
 ## TRIỂN KHAI
 ---
+> Cài đặt gói `squid`
+```shell
+dnf install -y squid
+```
