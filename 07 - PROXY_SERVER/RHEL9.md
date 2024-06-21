@@ -97,3 +97,11 @@ Installed:
 Complete!
 ```
 ---
+> Cấu hình Proxy Server: `/etc/squid/squid.conf`
+
+> Giới hạn host truy cập Internet
+```shell
+acl robusta-retrict src 10.10.10.101-10.10.10.110
+...
+http_access deny robusta-retrict
+```
