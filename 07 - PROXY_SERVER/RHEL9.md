@@ -101,7 +101,16 @@ Complete!
 
 > Giới hạn host truy cập Internet
 ```shell
-acl robusta-retrict src 10.10.10.101-10.10.10.110
+acl robusta-deny-01 src 10.10.10.101-10.10.10.110
 ...
-http_access deny robusta-retrict
+...
+http_access deny robusta-deny-01
+```
+> Cấp truy cập website
+```shell
+acl robusta-deny-02 src 10.10.10.111-10.10.10.119
+acl deny_web dstdomain "/etc/squid/denyweb"
+...
+...
+http_access deny robusta-deny-02 deny_web
 ```
