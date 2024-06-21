@@ -14,8 +14,8 @@ Domain: `kbuor.io.local`
 ---
 > Tải các gói cần thiết cho RHEL, tắt firewall trong quá trình cài đặt, tắt SELINUX.
 ```shell
-dnf install -y open-vm-tools git wget unzip zip epel-release vim net-tools vim
-dnf update -y
+yum install -y open-vm-tools git wget unzip zip epel-release vim net-tools vim
+yum update -y
 systemctl stop firewalld
 systemctl disable firewalld
 setenforce 0
