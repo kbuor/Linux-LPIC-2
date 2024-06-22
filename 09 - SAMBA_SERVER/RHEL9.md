@@ -22,10 +22,12 @@ directory mask = 0777
 inherit permissions = yes 
 access based share enum = yes 
 cups options = raw
+
 [homes]
 comment = Home Directories
 read only = No
 browseable = No
+
 [printers]
 comment = All Printers
 path = /var/spool/samba
